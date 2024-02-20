@@ -24,9 +24,6 @@ import Explore from "./components/Explore";
 import Mints from "./components/Mint";
 import Mint from "./components/Mint/Mint.js";
 
-// a suite of utilities for superusers to monitor the application and intervene
-import "./utils/passageDevTools";
-
 function App() {
   const dispatch = useDispatch();
 

@@ -22,8 +22,6 @@ import { useDispatch, useSelector } from "react-redux";
 import SetCookie from "../../hooks/cookies/SetCookies";
 import RemoveCookie from "../../hooks/cookies/RemoveCookies";
 import Toast from "../../components/custom/CustomToast";
-import { googleAnalyticsActions } from "../../utils/googleAnalyticsInit";
-import { TRACKING_ID } from "../../utils/globalConstant";
 import Wallet from "src/services/wallet";
 
 export default function LogInForm({ alpha, handleRedirection, closeModal }) {
@@ -53,7 +51,6 @@ export default function LogInForm({ alpha, handleRedirection, closeModal }) {
   });
 
   useEffect(() => {
-    googleAnalyticsActions.initGoogleAnalytics("UA-262724853-1");
     setDontlogout(isDontLogout);
   }, [isDontLogout]);
 
@@ -108,11 +105,7 @@ export default function LogInForm({ alpha, handleRedirection, closeModal }) {
           setupWebsocketToken();
           history.push("/discover");
           Toast.success(response.data.title, response.data.message);
-          googleAnalyticsActions.initGoogleAnalytics(
-            TRACKING_ID,
-            "login",
-            "login_Successful"
-          );
+
           if (closeModal) {
             closeModal();
           }
