@@ -193,126 +193,41 @@ export default function LogInForm({ alpha, handleRedirection, closeModal }) {
             <Col span={24} style={{ textAlign: "center" }}>
               <ReactSVG src={PassageLogo}></ReactSVG>
             </Col>
-            <Col span={24} className="login_text_heading">
-              LOG IN
-            </Col>
-            <Col span={24}>
-              <input
-                className="logIn-input"
-                onChange={(event) => {
-                  setLogin(event.currentTarget.value);
-                }}
-                placeholder="USERNAME OR EMAIL"
-                type="text"
-              ></input>
-            </Col>
-            <Col span={24} style={{ marginBottom: "8px" }}>
-              <div className="eye_icon">
-                <input
-                  onChange={(event) => {
-                    setPassword(event.currentTarget.value);
-                  }}
-                  type={isHidePassword ? "password" : "text"}
-                  className="logIn-input"
-                  placeholder="PASSWORD"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowHidePass(!isHidePassword)}
-                >
-                  {isHidePassword ? (
-                    <ReactSVG src={hidePasswordIcon}></ReactSVG>
-                  ) : (
-                    <ReactSVG src={showPasswordIcon}></ReactSVG>
-                  )}
-                </button>
-              </div>
-            </Col>
+
             <Col
               span={20}
               className="remember-row"
               style={{ marginBottom: "16px", fontFamily: "Montserrat" }}
             >
               <Row justify="space-between">
-                <Col span={12}>
-                  <Checkbox
-                    defaultChecked={isDontLogout}
-                    onChange={() => setDontlogout(!isDontLogout)}
-                    style={{ color: "grey", fontFamily: "Open Sans" }}
-                  >
-                    Don't log out
-                  </Checkbox>
-                </Col>
-                <Col
-                  className="forgot-password"
-                  span={12}
-                  style={{
-                    color: "grey",
-                  }}
-                >
-                  <Link
-                    to="/reset-password"
-                    style={{
-                      textDecoration: "none",
-                      fontFamily: "Open Sans",
-                      color: "grey",
-                    }}
-                  >
-                    Forgot password
-                  </Link>
-                </Col>
                 <Col span={24} style={{ marginTop: "15px" }}>
-                  <button
-                    onClick={(event) => loginPressed()}
-                    className="auth-button"
+                  <Col
+                    span={24}
+                    className="login_text_heading"
+                    style={{ margin: "0px" }}
                   >
-                    LOG IN
-                  </button>
-                  {alpha && (
-                    <>
+                    <div>
                       <Col span={24} className="login_text_heading">
-                        NON-ALPHA USERS
+                        Connect Wallet
                       </Col>
-                      <Col
-                        span={24}
-                        className="login_text_heading"
-                        style={{ margin: "0px" }}
+                      <div
+                        style={{
+                          gap: "10px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
                       >
-                        <div>
-                          <div
-                            style={{
-                              gap: "10px",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                            }}
-                          >
-                            <Tooltip placement="bottom" title={"Keplr"}>
-                              <img
-                                src={KeplrIcon}
-                                onClick={() => connectWallet("keplr")}
-                                alt="keplr"
-                              />
-                            </Tooltip>
-                            {/*<Tooltip placement="bottom" title={"Cosmostation"}>
-                              <img
-                                src={CosmoIcon}
-                                onClick={() => connectWallet("cosmos")}
-                                alt="cosmostation"
-                              />
-                            </Tooltip>
-                            <Tooltip placement="bottom" title={"Falcon"}>
-                              <img
-                                src={FalconIcon}
-                                onClick={() => connectWallet("falcon")}
-                                alt="falcon"
-                              />
-                          </Tooltip>*/}
-                          </div>
-                        </div>
-                      </Col>
-                    </>
-                  )}
+                        <Tooltip placement="bottom" title={"Keplr"}>
+                          <img
+                            src={KeplrIcon}
+                            onClick={() => connectWallet("keplr")}
+                            alt="keplr"
+                          />
+                        </Tooltip>
+                      </div>
+                    </div>
+                  </Col>
                 </Col>
                 <Col
                   span={24}
@@ -325,30 +240,6 @@ export default function LogInForm({ alpha, handleRedirection, closeModal }) {
                     marginTop: "15px",
                   }}
                 ></Col>
-                {!alpha && (
-                  <Col style={{ marginBottom: 12, marginTop: 12 }} span={24}>
-                    <Link to="/registration">
-                      <button
-                        className="auth-button"
-                        style={{
-                          border: "none",
-                          backgroundColor: "none",
-                          marginBottom: "20px",
-                          background: "none",
-                        }}
-                      >
-                        CREATE A FREE ACCOUNT
-                        <ReactSVG
-                          src={createAction}
-                          style={{
-                            display: "inline-block",
-                            marginLeft: "10px",
-                          }}
-                        ></ReactSVG>
-                      </button>
-                    </Link>
-                  </Col>
-                )}
               </Row>
             </Col>
           </Row>
