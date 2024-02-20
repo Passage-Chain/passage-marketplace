@@ -4,6 +4,24 @@
   width: 93%;
 }
 
+.world-container {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  background: url(../../assets/images-v2/strange-clan-game-bg.jpg) no-repeat
+    center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  .overlay-content-wrapper {
+    background: none;
+  }
+}
 .marketplace-button {
   font-family: "Niveau Grotesk Bold";
   width: 100%;

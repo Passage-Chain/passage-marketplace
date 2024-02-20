@@ -80,72 +80,9 @@ const UserDetails = ({}) => {
     dispatch(setShowChatWindow(true));
   };
 
-  const toggleSectionClick = () => {
-    setExpandSection(!expandSection);
-  };
   return (
     <div className={"user-details-container"} ref={userDetailRef}>
-      {token ? (
-        <>
-          <div className="minimized">
-            <div className="message-wrapper">
-              {unreadCount > 0 ? (
-                <NewMessageIcon
-                  className="cursor-pointer"
-                  onClick={handleMessageClick}
-                />
-              ) : (
-                <MessageIcon
-                  className="cursor-pointer"
-                  onClick={handleMessageClick}
-                />
-              )}
-            </div>
-
-            <div className="notification-wrapper">
-              <Popover
-                placement="bottom"
-                content={
-                  <BellNotificationBox
-                    unreadCount={unreadNotificationCount}
-                    setUnreadCount={setUnreadNotificationCount}
-                    notifications={notifications}
-                    setNotifications={setNotification}
-                    getAllNotification={getAllNotification}
-                  />
-                }
-                trigger="click"
-              >
-                {unreadNotificationCount > 0 ? (
-                  <NewNotificationIcon
-                    className="cursor-pointer"
-                    onClick={opennotification}
-                  />
-                ) : (
-                  <NotificationIcon
-                    className="cursor-pointer"
-                    onClick={opennotification}
-                  />
-                )}
-              </Popover>
-            </div>
-
-            <div className="profile-wrapper" onClick={toggleSectionClick}>
-              <Badge dot={true} color="green" size="small">
-                <CustomAvatar
-                  color={"none"}
-                  image={account.avatar || Avatar}
-                  size={36}
-                />
-              </Badge>
-              <label className="username cursor-pointer">
-                {account ? account.username : ""}
-              </label>
-            </div>
-          </div>
-          {expandSection && <LogoutSettingPanel />}
-        </>
-      ) : address ? (
+      {address ? (
         <button
           style={{
             background: "none",

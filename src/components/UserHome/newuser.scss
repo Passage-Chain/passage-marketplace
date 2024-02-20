@@ -1,12 +1,18 @@
 .world-container {
-  background: linear-gradient(180deg, rgba(8, 10, 12, 0) 0%, rgba(8, 10, 12, 0.6) 24.48%, #08090C 52.77%, rgba(8, 10, 12, 0.6) 76.56%, rgba(8, 10, 12, 0) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 10, 12, 0) 0%,
+    rgba(8, 10, 12, 0.6) 24.48%,
+    #08090c 52.77%,
+    rgba(8, 10, 12, 0.6) 76.56%,
+    rgba(8, 10, 12, 0) 100%
+  );
   overflow-y: scroll;
   overflow-x: scroll;
   width: 100%;
   height: 100%;
 
   .world-detail-container {
-
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -15,26 +21,38 @@
     height: 100vh;
     //background-size: 100vw 100vh;
 
+    &.home-container {
+      background: url(../../assets/images-v2/strange-clan-game-bg.jpg) no-repeat
+        center center scroll;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+
+      .overlay-content-wrapper {
+        background: none;
+      }
+    }
     .overlay-content-wrapper {
       max-width: 426px;
       display: flex;
       flex-direction: column;
-      top: 160px!important;
+      top: 160px !important;
       left: 135px;
       position: relative;
 
       .clan-logo {
-        padding-top:40px!important;
+        padding-top: 40px !important;
         max-width: 220px;
       }
 
       .description-txt {
-        font-family: 'Ignazio Text';
+        font-family: "Ignazio Text";
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
         line-height: 24px;
-        color: #FFFFFF;
+        color: #ffffff;
         margin-top: 56px;
       }
 
@@ -50,39 +68,38 @@
           gap: 8px;
           width: 132px;
           height: 48px;
-          background: #FFFFFF;
-          border: 1px solid #C3CFD5;
+          background: #ffffff;
+          border: 1px solid #c3cfd5;
           border-radius: 100px;
           cursor: pointer;
         }
-           .favicon{
-            width: 20px;
-            height: 20px;
-            flex: none;
-            order: 0;
-            flex-grow: 0;
-            top: 14px!important;
-            Left:16px!important;
-           }
-          .btn-label {
-            width: 150px;
-            height: 24px;
-            position: relative!important;
-            padding-left: 8px;
-            top: 1px;
-            font-family: 'Ignazio Text';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            color: #FFFFFF;
-            flex: none;
-            order: 1;
-            flex-grow: 0;
-          }
-
+        .favicon {
+          width: 20px;
+          height: 20px;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+          top: 14px !important;
+          left: 16px !important;
+        }
+        .btn-label {
+          width: 150px;
+          height: 24px;
+          position: relative !important;
+          padding-left: 8px;
+          top: 1px;
+          font-family: "Ignazio Text";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
+          color: #ffffff;
+          flex: none;
+          order: 1;
+          flex-grow: 0;
+        }
 
         .bookmark-btn {
           display: flex;
@@ -96,34 +113,34 @@
           border-radius: 100px;
           flex: none;
           flex-grow: 0;
-
         }
       }
     }
-    .slidebuttondiv{
+    .slidebuttondiv {
       display: flex;
       position: relative;
       box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 8px 12px 12px 12px;
-    gap: 10px;
-    width: 40px;
-    height: 40px;
-    top: 190px!important;
-    left: 50%!important;
-    border: 1px solid #525252;
-    border-radius: 100px;
-    .slidebutton{
-      Width:16px!important;
-      Height:16px!important;
-    .expandbuttonimg{
-      left: 9.37%!important;
-      right: 9.37%!important;
-    }}}
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 8px 12px 12px 12px;
+      gap: 10px;
+      width: 40px;
+      height: 40px;
+      top: 190px !important;
+      left: 50% !important;
+      border: 1px solid #525252;
+      border-radius: 100px;
+      .slidebutton {
+        width: 16px !important;
+        height: 16px !important;
+        .expandbuttonimg {
+          left: 9.37% !important;
+          right: 9.37% !important;
+        }
+      }
+    }
   }
-
 
   .world-bottom-container {
     width: 70vw;
@@ -137,22 +154,22 @@
         gap: 32px;
 
         .about-game-header {
-          font-family: 'Ignazio Text';
+          font-family: "Ignazio Text";
           font-style: normal;
           font-weight: 400;
           font-size: 24px;
           line-height: 32px;
           text-transform: uppercase;
-          color: #FFFFFF;
+          color: #ffffff;
         }
 
         .game-addition-description {
-          font-family: 'Open Sans';
+          font-family: "Open Sans";
           font-style: normal;
           font-weight: 400;
           font-size: 16px;
           line-height: 22px;
-          color: #FFFFFF;
+          color: #ffffff;
         }
 
         .game-tags {
@@ -166,14 +183,14 @@
             padding: 4px 12px;
             height: 32px;
             background: rgba(35, 35, 37, 0.48);
-            border: 1px solid #C3CFD5;
+            border: 1px solid #c3cfd5;
             border-radius: 100px;
-            font-family: 'Ignazio Text';
+            font-family: "Ignazio Text";
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
             line-height: 24px;
-            color: #FFFFFF;
+            color: #ffffff;
           }
         }
       }
@@ -181,7 +198,7 @@
   }
 }
 
-.pramotedlabeldiv{
+.pramotedlabeldiv {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -190,14 +207,14 @@
   width: 192px;
   height: 32px;
   background: rgba(35, 35, 37, 0.48);
-  border: 1px solid #C4C4C4;
+  border: 1px solid #c4c4c4;
   border-radius: 100px;
   flex: none;
   order: 0;
   flex-grow: 0;
-  vertical-align: baseline
+  vertical-align: baseline;
 }
-.mostplayed{
+.mostplayed {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -206,57 +223,56 @@
   width: 123px;
   height: 32px;
   background: rgba(35, 35, 37, 0.48);
-  border: 1px solid #C4C4C4;
+  border: 1px solid #c4c4c4;
   border-radius: 100px;
   flex: none;
   order: 0;
   flex-grow: 0;
 }
-.pramotedlabel{
+.pramotedlabel {
   width: 168px;
   height: 24px;
-  font-family: 'Ignazio Text';
+  font-family: "Ignazio Text";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #FFFFFF;
+  color: #ffffff;
   flex: none;
   order: 0;
   flex-grow: 0;
   align-items: center;
 }
-.mostplayeddiv{
+.mostplayeddiv {
   width: 192px;
   height: 24px;
-  font-family: 'Ignazio Text';
+  font-family: "Ignazio Text";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #FFFFFF;
+  color: #ffffff;
   flex: none;
   order: 0;
   flex-grow: 0;
   align-items: center;
-  vertical-align: baseline
+  vertical-align: baseline;
 }
-.pramoteddiv{
+.pramoteddiv {
   display: flex;
-flex-direction: column;
-align-items: center;
-padding: 0px;
-gap: 32px;
-width: 1170px;
-height: 1364px;
-flex: none;
-order: 2;
-align-self: stretch;
-flex-grow: 0;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 32px;
+  width: 1170px;
+  height: 1364px;
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
 }
 
-
-.socialcontent{
+.socialcontent {
   display: flex;
   flex-direction: row;
   align-items: flex-start;

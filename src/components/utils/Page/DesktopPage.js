@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  Row,
-  Col,
-  Layout,
-} from "antd";
+import { Row, Col, Layout } from "antd";
 
 import "./../../../styles/style.css";
 
@@ -24,11 +20,10 @@ import PublicProfile from "../../Settings/PublicProfile";
 import Account from "../../Settings/Account";
 import Media from "../../Settings/Media";
 import Notification from "../../Settings/Notification";
-import UserDetails from '../../../components/custom/UserDetails';
-import SocialFeed from '../../Feed/SocialFeed'
-import SocialFeedPostWorldGame from "../../SocialFeedPostWorldGame/SocialFeedPostWorldGame";
+import UserDetails from "../../../components/custom/UserDetails";
+import SocialFeed from "../../Feed/SocialFeed";
 import SimilarGames from "../../SimilarGames/SimilarGames";
-import Social from "../../Social-v2"
+import Social from "../../Social-v2";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -64,14 +59,20 @@ function DesktopPage() {
   }
 
   const gotoWorld = () => {
-    history.push('/app/index/world')
-  }
+    history.push("/app/index/world");
+  };
 
   return (
     <>
       <Layout
-        style={{ height: "100vh", padding: 0, backgroundImage: `url(${settingBg})`, backgroundRepeat: "no-repeat", 'overflow-y': 'scroll',
-        backgroundSize: "100%" }}
+        style={{
+          height: "100vh",
+          padding: 0,
+          backgroundImage: `url(${settingBg})`,
+          backgroundRepeat: "no-repeat",
+          "overflow-y": "scroll",
+          backgroundSize: "100%",
+        }}
       >
         <Sider
           className="background-none"
@@ -85,43 +86,60 @@ function DesktopPage() {
             </Col>
             <Col span={15}>
               <div className="menu">
-            {items.map((e) => {
-              return (
-                <div>
-                  <div key={e.key}
-                    className={`leftmenudiv ${
-                      active === e.label ? "left-menu-active" : ""
-                    }`}
-                    onClick={() => setActive(e.label)}
-                  >
-                    <ReactSVG
-                      src={e.icon}
-                    ></ReactSVG>
-                  </div>
-                  </div>
-              );
-            })}
-            </div>
+                {items.map((e) => {
+                  return (
+                    <div>
+                      <div
+                        key={e.key}
+                        className={`leftmenudiv ${
+                          active === e.label ? "left-menu-active" : ""
+                        }`}
+                        onClick={() => setActive(e.label)}
+                      >
+                        <ReactSVG src={e.icon}></ReactSVG>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </Col>
             <Col span={15}>
               <div className="chat">
                 <div className="chaticondiv2">
-              <ReactSVG className="chatimg" src={message_chat}></ReactSVG></div>
+                  <ReactSVG className="chatimg" src={message_chat}></ReactSVG>
+                </div>
               </div>
             </Col>
           </Row>
         </Sider>
-        { ( active === 'Settings' &&
-          <Sider className="background-none" style={{display:"inline-block",
-          height: "100%"}}>
-            <Row style={{ textAlign: "left", marginTop: "100px", display:"inline-block" }}>
+        {active === "Settings" && (
+          <Sider
+            className="background-none"
+            style={{ display: "inline-block", height: "100%" }}
+          >
+            <Row
+              style={{
+                textAlign: "left",
+                marginTop: "100px",
+                display: "inline-block",
+              }}
+            >
               <Col span={24}>
                 <h2 className="setting-header">Settings</h2>
               </Col>
               {settingItems.map((e) => {
                 return (
-                  <Col span={24} key={e.label}  >
-                    <div className={`setting-button ${ isChildSettingMenu === e.label ? 'setting-button-active' : 'setting-button-hover'}`} onClick={() => setChildMenu(e.label)}>{e.label}</div>
+                  <Col span={24} key={e.label}>
+                    <div
+                      className={`setting-button ${
+                        isChildSettingMenu === e.label
+                          ? "setting-button-active"
+                          : "setting-button-hover"
+                      }`}
+                      onClick={() => setChildMenu(e.label)}
+                    >
+                      {e.label}
+                    </div>
                   </Col>
                 );
               })}
@@ -129,33 +147,43 @@ function DesktopPage() {
           </Sider>
         )}
 
-        <Layout style={{background: 'none'}} className="layout">
-        <Header className="fav_exp" style={{textAlign: 'right', background: 'none', paddingTop: '10px', paddingRight: '80px'}} >
-          <ReactSVG src={favorite_exp} style={{display: 'inline-block', paddingRight: '20px'}} onClick={gotoWorld}/>
-          <UserDetails />
-        </Header>
-        <Layout style={{background: 'none'}} className="layout">
-        <Content style={{background: 'none', width: "70%"}}>
-          {active === "Settings" &&
-            <>
-              { isChildSettingMenu === "Public profile" && <PublicProfile />}
-              { isChildSettingMenu === "Account settings" && <Account />}
-              { isChildSettingMenu === "Audio and Video" && <Media />}
-              { isChildSettingMenu === "Notifications" && <Notification />}
-              {/* { isChildSettingMenu === "Wallet" && <Wallet />} */}
-            </>
-          }
-          {active==="SocialFeed"&&
-              <>
-                 <SocialFeed/>
-              </>
-          }
-          <SocialFeedPostWorldGame></SocialFeedPostWorldGame>
-          <SimilarGames></SimilarGames>
-          </Content>
-          <Social />
-        </Layout>
-
+        <Layout style={{ background: "none" }} className="layout">
+          <Header
+            className="fav_exp"
+            style={{
+              textAlign: "right",
+              background: "none",
+              paddingTop: "10px",
+              paddingRight: "80px",
+            }}
+          >
+            <ReactSVG
+              src={favorite_exp}
+              style={{ display: "inline-block", paddingRight: "20px" }}
+              onClick={gotoWorld}
+            />
+            <UserDetails />
+          </Header>
+          <Layout style={{ background: "none" }} className="layout">
+            <Content style={{ background: "none", width: "70%" }}>
+              {active === "Settings" && (
+                <>
+                  {isChildSettingMenu === "Public profile" && <PublicProfile />}
+                  {isChildSettingMenu === "Account settings" && <Account />}
+                  {isChildSettingMenu === "Audio and Video" && <Media />}
+                  {isChildSettingMenu === "Notifications" && <Notification />}
+                  {/* { isChildSettingMenu === "Wallet" && <Wallet />} */}
+                </>
+              )}
+              {active === "SocialFeed" && (
+                <>
+                  <SocialFeed />
+                </>
+              )}
+              <SimilarGames></SimilarGames>
+            </Content>
+            <Social />
+          </Layout>
         </Layout>
       </Layout>
     </>

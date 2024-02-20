@@ -4,8 +4,8 @@ import { Switch, Route, useHistory, useRouteMatch } from "react-router-dom";
 import DesktopPage from "../utils/Page/DesktopPage";
 import DesktopFriendsPanel from "../shared/FriendsPanel/DesktopFriendsPanel";
 import DesktopSettingPanel from "../shared/SettingPanel/DesktopSettingPanel";
-import Settings from "../Settings"
-import Chat from "../Chat"
+import Settings from "../Settings";
+import Chat from "../Chat";
 
 import DesktopDashboard from "../../views/DesktopDashboard/DesktopDashboard";
 import DesktopMessages from "../../views/DesktopMessages/DesktopMessages";
@@ -15,14 +15,14 @@ import { ReactSVG } from "react-svg";
 import GlobalChat from "../shared/GlobalChat/GlobalChat";
 import loader from "../../assets/images/spin-transparent.svg";
 import Social from "../Social";
-import FAQ from '../FAQ'
-import ContactUs from "../ContactUs"
+import FAQ from "../FAQ";
+import ContactUs from "../ContactUs";
 import WorldLayout from "./World";
 import World from "../World";
-import Explore from '../Explore'
+import Explore from "../Explore";
 import Discover from "../Discover";
 import FavouritePage from "../Favourite/FavouritePage";
-import SocialFeed from '../Feed/SocialFeed'
+import SocialFeed from "../Feed/SocialFeed";
 import ViewUserProfileWithFeeds from "../ViewFeeds/ViewUserProfileWithFeeds";
 import UserSetting from "../Settings/UserSettings";
 import Conference from "../Conference";
@@ -42,12 +42,9 @@ export default function DesktopPageLayout({
   isLoading,
   setLoading,
 }) {
-  useEffect(() => {
-
-  })
+  useEffect(() => {});
   return (
     <WorldLayout>
-      {/* <DesktopPage /> */}
       <Switch>
         <Route exact path={`/app/index/world`}>
           <World />
@@ -60,18 +57,18 @@ export default function DesktopPageLayout({
         </Route>
         <Route exact path={`/app/index/favourites`}>
           <FavouritePage />
-          </Route>
+        </Route>
         <Route exact path={`/app/index/social`}>
           <SocialFeed />
         </Route>
         <Route exact path={`/app/index/viewfeeds`}>
-          <ViewUserProfileWithFeeds usertype={'S'}/>
+          <ViewUserProfileWithFeeds usertype={"S"} />
         </Route>
         <Route exact path={`/app/index/viewownerFeeds`}>
-          <ViewUserProfileWithFeeds usertype={'O'}/>
+          <ViewUserProfileWithFeeds usertype={"O"} />
         </Route>
         <Route exact path={`/app/index/viewotheruserFeeds`}>
-          <ViewUserProfileWithFeeds usertype={'OU'}/>
+          <ViewUserProfileWithFeeds usertype={"OU"} />
         </Route>
         <Route exact path={`/app/index/accept-request/:hash`}>
           <AcceptRequest />
@@ -100,13 +97,13 @@ export default function DesktopPageLayout({
           </div>
         </Route>
         <Route exact path={`/app/index/messages`}>
-            <Chat onExitMassagesClick={onExitMassagesClick}/>
+          <Chat onExitMassagesClick={onExitMassagesClick} />
         </Route>
         <Route exact path={`/app/index/faq`}>
-          <FAQ onExitFAQ={onExitFAQ}/>
+          <FAQ onExitFAQ={onExitFAQ} />
         </Route>
         <Route exact path={`/app/index/contact-us`}>
-          <ContactUs onExit={onExitContactUs}/>
+          <ContactUs onExit={onExitContactUs} />
         </Route>
         <Route exact path={`/app/index/conference`}>
           <Conference />
