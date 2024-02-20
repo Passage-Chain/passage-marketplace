@@ -9,10 +9,6 @@ function CollectionCard(props) {
     return `${uatom / 1000000}`;
   };
 
-  const isLive = () => {
-    return Date.now() * 10000000 > props.mint.sale;
-  };
-
   return (
     <div
       key={props.name}
@@ -20,7 +16,7 @@ function CollectionCard(props) {
       style={{ maxWidth: "440px" }}
     >
       <div className="collection-card">
-        { /*<LiveBadge live={isLive()} />*/ }
+        {/*<LiveBadge live={isLive()} />*/}
         <div className="preview-out" style={{ textAlign: "center" }}>
           <video
             playsInline
@@ -30,7 +26,9 @@ function CollectionCard(props) {
             src={props.mint.previewUrl}
             className="preview"
             style={{ marginBottom: "0", aspectRatio: "0.72" }}
-            {...(props.mint.previewUrl.includes(".png") ? { poster: props.mint.previewUrl } : {} )}
+            {...(props.mint.previewUrl.includes(".png")
+              ? { poster: props.mint.previewUrl }
+              : {})}
           />
         </div>
         <div className="description">
@@ -81,7 +79,10 @@ function CollectionCard(props) {
                   <span className="label">PRICE</span>
                   <span className="value price">
                     {convertUATOMToATOM(props?.mint.price)}
-                    <PassageLogoIcon alt="PASG" style={{ height: "20px", paddingBottom: "3px" }} />
+                    <PassageLogoIcon
+                      alt="PASG"
+                      style={{ height: "20px", paddingBottom: "3px" }}
+                    />
                   </span>
                 </td>
                 {/*<td style={{ borderTopRightRadius: "8px" }}>

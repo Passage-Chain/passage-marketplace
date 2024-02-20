@@ -1,32 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import Social from "../../Social-v2";
-// import FavouriteContainer from "../../Favourite/MinimizedFavoriteContainer";
-// import Chat from "../../Chat";
-import Report from "../../Report";
+import { useEffect, useState } from "react";
+
 import { Tooltip } from "antd";
 import { useHistory, useLocation } from "react-router-dom";
-import useOnlineUsers from "../../../hooks/useOnlineUsers";
 
-import { ReactComponent as DiscoverIcon } from "../../../assets/images-v2/discover.svg";
-import { ReactComponent as ActiveDiscoverIcon } from "../../../assets/images-v2/discover-active.svg";
-import { ReactComponent as SocialIcon } from "../../../assets/images-v2/social.svg";
-import { ReactComponent as ActiveSocialIcon } from "../../../assets/images-v2/social-active.svg";
 import { ReactComponent as ExploreIcon } from "../../../assets/images-v2/explore.svg";
 import { ReactComponent as ActiveExploreIcon } from "../../../assets/images-v2/explore-active.svg";
-import { ReactComponent as NewMessageIcon } from "../../../assets/images-v2/message_chat_new.svg";
-import { ReactComponent as MessageIcon } from "../../../assets/images-v2/message_chat.svg";
 import { ReactComponent as PassageLogoIcon } from "../../../assets/images/left_menu_passageLogo.svg";
 import { ReactComponent as MyWorldsIcon } from "../../../assets/images-v2/globe-icon.svg";
 import { ReactComponent as BugReportIcon } from "../../../assets/images-v2/bug-icon.svg";
 import { ReactComponent as MintIcon } from "../../../assets/images-v2/mint.svg";
 import { ReactComponent as ActiveMintIcon } from "../../../assets/images-v2/mint-active.svg";
-import { ReactComponent as Searchbar } from "../../../assets/images/Searchbar.svg";
 import UserDetails from "../../custom/UserDetails";
 import "./index.scss";
-// import WorldMenu from "../../World/Menu";
-import { setIsDM, setShowChatWindow } from "../../../redux/chatSlice";
-import GlobalSearchInput from "../../custom/GlobalSearchInput";
+
 import { FEED_USER_TYPES } from "src/utils/globalConstant";
 
 const Header = () => {
@@ -36,9 +22,6 @@ const Header = () => {
     history.push("/discover");
   };
 
-  const gotoWorld = () => {
-    history.push("/world");
-  };
   const gotoUserProfile = () => {
     history.push("/feeds", { usertype: FEED_USER_TYPES.SELF });
   };
@@ -79,19 +62,9 @@ const SideOptions = () => {
     history.push("/marketplace");
   };
 
-  const handleDiscoverClick = () => {
-    setActiveOption("discover");
-    history.push("/discover");
-  };
-
   const handleExploreClick = () => {
     setActiveOption("marketplace");
     gotoExplore();
-  };
-
-  const handleSocialClick = () => {
-    setActiveOption("social");
-    history.push("/social");
   };
 
   const handleMyWorldsClick = () => {
@@ -137,26 +110,12 @@ const SideOptions = () => {
 };
 
 const Message = () => {
-  const dispatch = useDispatch();
-  const { showChatWindow, unreadCount } = useSelector((state) => state.chat);
-
-  const handleMessageClick = () => {
-    dispatch(setShowChatWindow(true));
-  };
-
   const handleBugReportClick = () => {
     window.open("https://forms.gle/aXp81j4XSSrZowWt6", "_blank").focus();
   };
 
-  const closeChat = () => {
-    dispatch(setShowChatWindow(false));
-    dispatch(setIsDM(false));
-  };
-
   return (
     <>
-      {/* <Chat onClose={closeChat} show={showChatWindow} /> */}
-
       <div className="wco-container bug-report">
         <Tooltip placement="right" title="Report a bug">
           <BugReportIcon
@@ -173,17 +132,12 @@ const Message = () => {
 };
 
 const WorldLayout = ({ children }) => {
-  const token = useSelector((state) => state.account.token);
-
-  useOnlineUsers();
   return (
     <div className="world-layout-container">
       <Header />
       <SideOptions />
-      {/* {token && <Social />} */}
       {children}
       <Message />
-      <Report />
     </div>
   );
 };

@@ -4,9 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import "../../styles/style.css";
 import KeplrIcon from "../../assets/images/icon-kepler.png";
-import FalconIcon from "../../assets/images/icon-falcon.png";
-import CosmoIcon from "../../assets/images/icon-cosmo.png";
-
 import accountHttpService from "../../services/account";
 import {
   setLogin as setReduxLogin,

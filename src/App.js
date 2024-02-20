@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Login from "./views/Log In/LogIn";
 
@@ -14,12 +14,10 @@ import GuardedRoute from "./components/utils/GuardedRoute";
 
 import settingService from "./services/settings";
 import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setId, setUsername, setEmail } from "./redux/accountSlice";
 
 import useWhoami from "./hooks/useWhoami";
-
-import { initiateChat } from "./utils/configChat";
 
 import NftDetails from "./components/Explore/NftDetails";
 import Explore from "./components/Explore";
@@ -41,7 +39,6 @@ function App() {
 
   const screens = useBreakpoint();
   handleResize();
-  const account = useSelector((state) => state.account);
 
   useEffect(() => {
     fetchUserDetails();

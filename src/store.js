@@ -5,9 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 
 import {
-  persistStore,
   persistReducer,
-  createMigrate,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -37,7 +35,14 @@ const persistConfig = {
   version: 2,
   storage,
   stateReconciler: autoMergeLevel2,
-  blacklist: ["app.isSplashed", "account.agoraId", "notification", "chat", "world.isInWorld", "world.selectedWorld"],
+  blacklist: [
+    "app.isSplashed",
+    "account.agoraId",
+    "notification",
+    "chat",
+    "world.isInWorld",
+    "world.selectedWorld",
+  ],
 };
 
 const rootReducer = combineReducers({
@@ -52,7 +57,7 @@ const rootReducer = combineReducers({
   friends: friendsSlice,
   favourite: favouriteSlice,
   world: worldSlice,
-  guest: guestSlice
+  guest: guestSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

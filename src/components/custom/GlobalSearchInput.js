@@ -61,7 +61,7 @@ const GlobalSearchInput = () => {
   const [worldList, setWorldList] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const debouncedSearchText = useDebounce(searchString, 1000);
-  const account = useSelector(state => state.account)
+  const account = useSelector((state) => state.account);
 
   const history = useHistory();
 
@@ -95,7 +95,9 @@ const GlobalSearchInput = () => {
       );
       const filteredData = response.data?.filteredData;
       const { people, world } = filteredData.length ? filteredData[0] : {};
-      const peopleList = (people?.data || []).filter(people => people.id !== account.id)
+      const peopleList = (people?.data || []).filter(
+        (people) => people.id !== account.id
+      );
       setPeopleList(peopleList);
       setWorldList(world?.data || []);
     } catch (error) {
@@ -133,9 +135,7 @@ const GlobalSearchInput = () => {
     <div className="custom-search-container">
       {!expand ? (
         <div style={styles.minSearchWrapper} onClick={() => setExpand(true)}>
-          <SearchIcon
-            style={styles.searchIcon}
-          />
+          <SearchIcon style={styles.searchIcon} />
         </div>
       ) : (
         <>
@@ -224,7 +224,10 @@ const GlobalSearchInput = () => {
                             width={46}
                           />
                         )}
-                        <span style={{ textTransform: 'none' }} className="global_search_item_name">
+                        <span
+                          style={{ textTransform: "none" }}
+                          className="global_search_item_name"
+                        >
                           {people.nickname}
                         </span>
                       </div>

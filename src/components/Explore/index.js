@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { CustomSelect } from "../custom";
@@ -47,17 +47,16 @@ const GRID_OPTIONS = {
 
 const Explore = (props) => {
   const [filters, setFilters] = useState("");
-  const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("");
+  const [search] = useState("");
+  const [sort] = useState("");
   const [nftList, setNftList] = useState([]);
-  const [sortOption, setSortOption] = useState(SORT_OPTION.PRICE);
+  const [sortOption] = useState(SORT_OPTION.PRICE);
   const [sortOrder, setSortOrder] = useState(SORT_MODE.ASC);
-  const [count, setCount] = useState(0);
+
   const [hasMore, setHasMore] = useState(false);
   const [page, setPage] = useState(0);
-  //const [queryString, setQueryString] = useState();
   const [searchString, setSearchString] = useState("");
-  const [selectedCollection, setSelectedCollection] = useState("");
+  const [setSelectedCollection] = useState("");
 
   // guestUser Address
   const guestAddress = useSelector((state) => state.guest.walletAddress);
@@ -73,7 +72,6 @@ const Explore = (props) => {
   const [payload, setPayload] = useState({});
   const debouncedSearchText = useDebounce(searchString, 1000);
   const history = useHistory();
-  const wallet = useSelector((state) => state.wallet);
 
   const contractsByBase = contractsByBaseContract();
 
@@ -253,18 +251,6 @@ const Explore = (props) => {
         maxLength={50}
         suffix={<SearchIcon />}
       />
-    );
-  };
-
-  const handleLoadMore = () => {
-    fetchNftList(false);
-  };
-
-  const renderLoadMoreButton = () => {
-    return (
-      <div className="ex-load-more-wrapper" onClick={handleLoadMore}>
-        <span className="ex-load-more-label">Load more</span>
-      </div>
     );
   };
 

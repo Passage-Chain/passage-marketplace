@@ -10,7 +10,7 @@ import {
   setUsername,
   setEmail,
   setAvatar,
-  setbriefInfo
+  setbriefInfo,
 } from "../redux/accountSlice";
 
 import accountService from "../services/account";
@@ -32,13 +32,13 @@ export default function useWhoami(props) {
       .then((response) => {
         console.debug(response);
         if (response.status === 200) {
-          RemoveCookie('userDetails'); // removed cookies data
-          SetCookie('useDetails', JSON.stringify(response.data));
+          RemoveCookie("userDetails"); // removed cookies data
+          SetCookie("useDetails", JSON.stringify(response.data));
           dispatch(setId(response.data.id));
           dispatch(setIsSuperUser(response.data.isSuper));
           dispatch(setNeonName(response.data.firstName));
           dispatch(setChatLink(response.data.chatConnectionString));
-          dispatch(setUsername(response.data.nickname))
+          dispatch(setUsername(response.data.nickname));
           dispatch(setEmail(response.data.email));
           dispatch(setAvatar(response.data.profileImage));
           dispatch(setbriefInfo(response.data.briefInfo));
@@ -46,16 +46,16 @@ export default function useWhoami(props) {
 
         if (response.status === 401) {
           dispatch(clean());
-          dispatch(setUsername(""))
-          RemoveCookie('userDetails'); 
+          dispatch(setUsername(""));
+          RemoveCookie("userDetails");
           history.push("/");
         }
       })
       .catch((error) => {
         //console.log("cookies", cookies.remove('token', []));
-        RemoveCookie('userDetails'); 
-        dispatch(setUsername(""))
-        console.error(error)
+        RemoveCookie("userDetails");
+        dispatch(setUsername(""));
+        console.error(error);
       });
-  }, [account.token]);
+  }, [account.token, dispatch, history]);
 }

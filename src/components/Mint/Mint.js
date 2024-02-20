@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { collectionForMintContract } from "src/configs/collections";
-import StrangeClan from "../../assets/images/StrangeClan.png";
 import useWalletAddress from "../../hooks/useWalletAddress";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
@@ -42,7 +41,7 @@ function Mint() {
             ?.attributes?.find((a) => a.key === "token_id")?.value;
 
           // TODO: not sure if this will be static of if it needs to be like ^
-          const contractAddress = res.logs[0].events[2].attributes[1].value;
+          // const contractAddress = res.logs[0].events[2].attributes[1].value;
           if (tokenId) {
             Toast.success(
               "NFT Succesfully Minted",
@@ -50,7 +49,9 @@ function Mint() {
               {
                 /*logo: <img src={StrangeClan} alt="Success" />,*/
                 handleClick: () =>
-                  history.push(`/marketplace/${collection.contracts.base}/${tokenId}`),
+                  history.push(
+                    `/marketplace/${collection.contracts.base}/${tokenId}`
+                  ),
               }
             );
           }
@@ -80,7 +81,7 @@ function Mint() {
       collection.contracts.mint
     );
 
-    const num_tokens = await service.getNumTokens(collection.contracts.base)
+    const num_tokens = await service.getNumTokens(collection.contracts.base);
 
     /*if (collection.id === "metahuahua") {
       res2.max_num_tokens = 3333;
@@ -91,7 +92,7 @@ function Mint() {
       unit_price: res2.unit_price,
       max_num_tokens: res2.max_num_tokens,
       num_minted: num_minted_result.num_minted || 0,
-      num_tokens: num_tokens?.count
+      num_tokens: num_tokens?.count,
     });
 
     if (t < res.start_time) {
@@ -102,7 +103,6 @@ function Mint() {
     } else {
       setStatus("Whitelist Sale");
     }
-
   };
 
   useEffect(() => {
@@ -110,7 +110,7 @@ function Mint() {
 
     setCollection(collection);
     getMintConfig(collection);
-  }, [walletAddress]);
+  }, [walletAddress, mintContract]);
 
   return (
     <>
@@ -189,14 +189,12 @@ function Mint() {
                             <td>
                               <span className="label">Percent Minted</span>
                               <span className="value">
-                                {
-                                  config.num_tokens &&
+                                {config.num_tokens &&
                                   (
                                     (config.num_tokens /
                                       collection.mint.totalCount) *
                                     100.0
-                                  ).toFixed(2)
-                                }
+                                  ).toFixed(2)}
                                 {/*!config.num_minted ||
                                 !config.max_num_tokens ||
                                 config.num_minted === 0
@@ -212,9 +210,9 @@ function Mint() {
                             <td>
                               <span className="label">Royalties</span>
                               <span className="value">
-                                { collection.name === "Metahuahua"
+                                {collection.name === "Metahuahua"
                                   ? "10%"
-                                : "6%" }
+                                  : "6%"}
                               </span>
                             </td>
                           </tr>

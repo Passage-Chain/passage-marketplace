@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, useHistory } from "react-router";
-import { clean, setToken } from "../../../redux/accountSlice";
+import { clean } from "../../../redux/accountSlice";
 import WorldLayout from "../../layout/World";
 import { Modal } from "antd";
 import LogInForm from "src/views/Log In/LoginForm";
