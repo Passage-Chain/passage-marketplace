@@ -1,0 +1,35 @@
+.profile_avatar_holder_inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s;
+  transform-style: preserve-3d;
+  padding: 1rem;
+  height: 7rem !important;
+  width: 7rem !important;
+}
+
+.front-avatar .skin_profile_size {
+  height: 9.15rem !important;
+
+  width: 9.15rem !important;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.front-avatar .ring_profile_size {
+  height: 8.15rem !important;
+  width: 8.15rem !important;
+  background-color: rgb(41, 41, 188);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.front-avatar .profile_avatar_image {
+  height: 7.15rem !important;
+  width: 7.15rem !important;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 11;
+}

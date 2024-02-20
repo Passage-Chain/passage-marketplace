@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="44" viewBox="0 0 42 44">
+	<defs>
+		<style>
+			.aa{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:4px;}
+		</style>
+	</defs>
+    <circle class="a" cx="21" cy="21" r="21" transform="translate(0 2)" />
+	<circle class="b" cx="21" cy="21" r="21" />
+	<path class="aa" d="M46.142,329.142,32,315l14.142-14.142" transform="translate(-20.172 -293.444)"  rx="2.126"/>
+</svg>

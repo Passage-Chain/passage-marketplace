@@ -1,0 +1,939 @@
+.social_feed_container {
+  display: flex !important;
+  flex-direction: row !important;
+  color: white;
+}
+
+.headerbg {
+  padding: 8px;
+  gap: 16px;
+  width: 264px;
+  height: 64px;
+  background: rgba(35, 35, 37, 0.48);
+  backdrop-filter: blur(25px);
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  border-radius: 25px 25px 0px 0px !important;
+}
+
+/* .social_feed_content{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 16px 0px;
+gap: 24px;
+width: 264px;
+height: 218px;
+background: #080A0C;
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+border-radius: 0px 0px 25px 25px!important;
+} */
+.curvebg {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+  width: 248px;
+  height: 48px;
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+  border-radius: 100px;
+}
+
+.userlabel {
+  width: 109px;
+  height: 22px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.userprofilebtm {
+  gap: 24px;
+  width: 264px;
+  height: 200px;
+  background: #080a0c;
+  order: 1;
+}
+.UserProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+
+  width: 264px;
+  height: 264px;
+
+  border-radius: 26px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.chats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 16px;
+
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  left: 32px;
+  top: 816px;
+}
+.chaticondiv {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px;
+  gap: 10px;
+
+  width: 32px;
+  height: 32px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.u1img {
+  position: absolute;
+  left: 12.5%;
+  right: 12.5%;
+  top: 8.34%;
+  bottom: 12.5%;
+}
+.u1txt {
+  width: 33px; ///check this for height
+  height: 20px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 17px;
+  color: #ffffff;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.usrline {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 12px;
+  gap: 32px;
+  width: 264px;
+  height: 32px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.followinnerdiv {
+  display: flex !important;
+  flex-direction: row !important;
+  box-sizing: border-box;
+  justify-content: left;
+  align-items: flex-start;
+  padding: 2px 0px;
+  width: 57px;
+  height: 32px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.follower {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 6px 0px;
+  gap: 8px;
+  width: 57px;
+  height: 32px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.followtxt {
+  width: 33px;
+  height: 30px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 12px;
+  gap: 32px;
+  width: 264px;
+  height: 32px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.badges {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px 6px;
+  gap: 8px;
+  width: 264px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.badges-with-maxmumheight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px 6px;
+  gap: 8px;
+  width: 264px;
+  max-height: 90px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.popupworldfeed {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 9px;
+  grid-gap: 2px;
+  width: 60px;
+  grid-gap: 2px;
+  grid-gap: 2px;
+  gap: 2px;
+  position: relative;
+  left: 220px;
+  background: rgba(35, 35, 37, 0.8);
+  box-shadow: 0px 8px 8px -2px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.badgesdiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  width: 237px;
+  height: 52px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.badgesfirstrow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  width: 200px;
+  height: 22px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.badgerow2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+
+  width: 237px;
+  height: 30px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.bdg {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px 6px;
+  gap: 4px;
+  width: 79px;
+  height: 22px;
+  background: rgba(120, 186, 214, 0.08);
+  border-radius: 100px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 2px;
+}
+.bdg1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px 6px;
+  gap: 4px;
+
+  width: 79px;
+  height: 22px;
+
+  background: rgba(120, 186, 214, 0.08);
+  border-radius: 100px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.bdg2 {
+  display: inline-block;
+  padding: 3px 6px;
+  gap: 4px;
+  height: 22px;
+  background: rgba(222, 71, 41, 0.08);
+  border-radius: 100px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 2px;
+}
+.bdgtxt {
+  width: 100%;
+  height: 16px;
+
+  font-family: "Ignazio Text";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  color: #78bad6;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.bdg2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px 6px;
+  gap: 4px;
+
+  height: 22px;
+
+  background: rgba(255, 219, 166, 0.08);
+  border-radius: 100px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+
+  color: #fff;
+  img {
+    filter: brightness(0) invert(1);
+  }
+
+  &.passage-pioneer {
+    color: #78bad6;
+
+    img {
+      filter: invert(25%) sepia(59%) saturate(354%) hue-rotate(166deg)
+        brightness(89%) contrast(87%);
+    }
+  }
+
+  &.alpha-tester {
+    color: #ffdba6;
+
+    img {
+      filter: invert(10%) sepia(4%) saturate(5211%) hue-rotate(320deg)
+        brightness(110%) contrast(101%);
+    }
+  }
+}
+.bdgtxt2 {
+  width: 100%;
+  height: 16px;
+  font-family: "Ignazio Text";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffdba6;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.bdgtxt3 {
+  width: 100%;
+  height: 16px;
+
+  font-family: "Ignazio Text";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  color: #f28f38;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.bdgtxt4 {
+  width: 80%;
+  height: 16px;
+
+  font-family: "Ignazio Text";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  color: #de4729;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.prfbuttondiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-left: 5px;
+  width: 264px;
+  justify-content: center;
+  align-items: center;
+  /* Inside auto layout */
+  cursor: pointer;
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+  cursor: pointer;
+}
+.prfbutton {
+  cursor: pointer;
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 24px;
+  gap: 8px;
+  background-color: #080a0c;
+  width: 240px;
+  height: 36px;
+
+  /* System/other/Outline border */
+
+  border: 1px solid #c3cfd5;
+  border-radius: 100px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.prftxt {
+  cursor: pointer;
+  width: 59px;
+  height: 20px;
+  font-family: "Ignazio Text";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.extend {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 7px 0px 9px 6px;
+  grid-gap: 10px;
+  gap: 10px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #525252;
+  border-radius: 100px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.minimum_height {
+  min-height: 195px;
+}
+.exapand_height {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px 0px;
+  gap: 24px;
+  width: 264px;
+  border-radius: 0px 0px 26px 26px;
+  background: #080c09;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.content1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px 0px;
+  gap: 24px;
+  width: 264px;
+  max-height: 200px;
+  border-radius: 0px 0px 26px 26px;
+  /* System/Background/Default bg */
+
+  background: #080c09;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.leftside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+
+  position: absolute;
+  width: 268px;
+  height: 768px;
+  left: 135px;
+  top: 100px;
+}
+.contentinfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 12px;
+  gap: 32px;
+
+  width: 264px;
+  height: 32px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.grpimg {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: baseline;
+  padding: 1px;
+  text-align: left;
+}
+.socialfeed {
+  display: "flex";
+  flex-direction: "row";
+  padding-top: "10px" !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: scroll !important;
+  position: relative;
+  z-index: -1;
+
+  .infinite-scroll-component__outerdiv {
+    height: 100%;
+
+    .infinite-scroll-component  {
+        width: 100%;
+        padding-bottom: 50px;
+    }
+  }
+}
+.optionsbtn {
+  padding-left: 380px;
+  position: relative;
+  cursor: pointer;
+}
+.no-friends-text {
+  padding-left: 20px;
+  font-size: 17px;
+  color: #fff;
+  font-family: niveau-grotesk;
+  font-weight: bold;
+  margin-top: 40px;
+}
+.outline {
+  background-color: #080a0c;
+  border-radius: 26px;
+}
+.feeddiv {
+  // padding:16px 16px 12px 16px
+  width: 100%;
+}
+.social_bottom_tag {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+.social_bottom_tag a {
+  display: flex;
+  padding: 1px 6px;
+  text-decoration: none;
+  margin-right: 10px;
+  color: #fff;
+}
+.editdelete_box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 9px;
+  gap: 2px;
+  position: absolute;
+  left: 522px;
+  background: rgba(35, 35, 37, 0.8);
+  box-shadow: 0px 8px 8px -2px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+}
+
+.delete_modal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  width: 586px;
+  height: 248px;
+  border-radius: 13px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.delete_header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 16px 32px;
+  gap: 10px;
+  width: 586px;
+  height: 56px;
+  background: #303030;
+  box-shadow: 0px 8px 8px -2px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.delete_content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px;
+  gap: 10px;
+  width: 586px;
+  height: 192px;
+  background: #242424;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.delete_button {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 8px;
+
+  width: 177px;
+  height: 48px;
+
+  /* System/action/default */
+
+  border: 1px solid #9a9c9d;
+  border-radius: 100px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.cursor-not-allowedOptions {
+  cursor: not-allowed;
+  padding-left: 380px;
+  position: relative;
+}
+
+.badge-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 6px !important;
+}
+.badgetag-wrapper {
+  align-items: center;
+  padding: 3px 6px;
+  gap: 4px;
+}
+.badgesvg {
+  width: 14px;
+  height: 14px;
+}
+.badge_image {
+  width: 15px;
+  height: 15px;
+
+  path {
+    fill: #fff;
+    stroke: #fff;
+  }
+}
+.tbadgeag-label {
+  font-family: "Ignazio Text";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+.editdelete_box_world {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 9px;
+  gap: 2px;
+  margin-left: 245px;
+  position: absolute;
+  background: rgba(35, 35, 37, 0.8);
+  box-shadow: 0px 8px 8px -2px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+}
+.editdelete_box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 9px;
+  grid-gap: 2px;
+  gap: 2px;
+  position: absolute;
+  background: rgba(35, 35, 37, 0.8);
+  box-shadow: 0px 8px 8px -2px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+}
+.delete_modal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  width: 586px;
+  height: 248px;
+  border-radius: 13px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.delete_header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 16px 32px;
+  gap: 10px;
+  width: 586px;
+  height: 56px;
+  background: #303030;
+  box-shadow: 0px 8px 8px -2px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.delete_content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px;
+  gap: 10px;
+  width: 586px;
+  height: 192px;
+  background: #242424;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.delete_button {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 8px;
+
+  width: 177px;
+  height: 48px;
+
+  /* System/action/default */
+
+  border: 1px solid #9a9c9d;
+  border-radius: 100px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.cursor-not-allowedOptions {
+  cursor: not-allowed;
+  padding-left: 380px;
+  position: relative;
+}
+
+.badge-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 6px !important;
+}
+
+.badgetag-wrapper {
+  align-items: center;
+  padding: 3px 6px;
+  gap: 4px;
+}
+
+.badgesvg {
+  width: 14px;
+  height: 14px;
+}
+
+.tbadgeag-label {
+  font-family: "Ignazio Text";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+.cursor-not-allowedOptions {
+  cursor: not-allowed;
+  padding-left: 380px;
+  position: relative;
+}
+
+.world-social-feed {
+  display: flex !important;
+  flex-direction: row !important;
+  color: white;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 20px !important;
+}
+.world-option-button {
+  top: 12px;
+  position: relative;
+  cursor: pointer;
+  padding-left: 90px;
+}
+.cursor-not-allowedOptions {
+  cursor: not-allowed;
+  padding-left: 110px;
+  position: relative;
+}
+.follow-friend {
+  width: 17px;
+  height: 16px;
+}

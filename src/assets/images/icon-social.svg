@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="19" viewBox="0 0 21 19">
+  <g id="icon-social" transform="translate(22221 23229.535)">
+    <g id="Ellipse_139" data-name="Ellipse 139" transform="translate(-22208 -23229.535)" fill="none" stroke="#fff" stroke-width="0.6">
+      <circle cx="4" cy="4" r="4" stroke="none"/>
+      <circle cx="4" cy="4" r="3.7" fill="none"/>
+    </g>
+    <g id="Ellipse_141" data-name="Ellipse 141" transform="translate(-22221 -23223.535)" fill="none" stroke="#fff" stroke-width="0.6">
+      <circle cx="5.5" cy="5.5" r="5.5" stroke="none"/>
+      <circle cx="5.5" cy="5.5" r="5.2" fill="none"/>
+    </g>
+    <g id="Ellipse_140" data-name="Ellipse 140" transform="translate(-22208 -23217.535)" fill="none" stroke="#fff" stroke-width="0.6">
+      <circle cx="3.5" cy="3.5" r="3.5" stroke="none"/>
+      <circle cx="3.5" cy="3.5" r="3.2" fill="none"/>
+    </g>
+    <line id="Line_130" data-name="Line 130" y1="2.168" x2="3.794" transform="translate(-22210.973 -23223.273)" fill="none" stroke="#fff" stroke-width="0.6"/>
+    <line id="Line_131" data-name="Line 131" x2="3.794" y2="1.626" transform="translate(-22210.973 -23216.225)" fill="none" stroke="#fff" stroke-width="0.6"/>
+  </g>
+</svg>

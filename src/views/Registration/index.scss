@@ -1,0 +1,121 @@
+.ml_15{
+  margin-left: 15px;
+}
+.term_condition{
+  display: flex;
+}
+.term_modal{
+width: 1376px !important;
+height: 792px;
+left: 32px;
+top: 84px;
+
+/* System/other/overlay */
+
+background: rgba(35, 35, 37, 0.8);
+/* Blur & shadow/Strong blur
+
+full screen
+*/
+backdrop-filter: blur(60px);
+/* Note: backdrop-filter has minimal browser support */
+
+border-radius: 26px;
+.ant-modal-content{
+  
+  background: none;
+  
+  .ant-modal-footer{
+    display: none;
+  }
+  .ant-modal-close{
+    color: #fff;
+  }
+}
+}
+.privacy_heading {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height, or 138% */
+  color: #D7D7D7;
+  text-align: left;
+  margin: 15px 0;
+}
+.term_content{
+  width: 1360px;
+  height: 695px;
+  
+  /* System/action/hover */
+  
+  background: #141415;
+  border-radius: 26px;
+  padding: 25px;
+  max-height: 695px;
+  overflow: hidden;
+  overflow-y: scroll;
+  
+  .sub_heading{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height, or 122% */
+    color: #FFFFFF;
+    padding: 10px 0;
+  }
+  .sub_heading2{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height, or 122% */
+    color: #FFFFFF;
+    padding: 10px 0;
+  }
+  .text_content{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #C4C4C4;
+  }
+
+}
+
+.checkbox_text {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #FFFFFF;
+  text-align: left;
+  margin-left: 10px;
+}
+.pointer :hover {
+  cursor: pointer;
+}
+
+
+.create-account-button {
+  font-family: "Niveau Grotesk Bold";
+  width: 100%;
+  padding: 7px 0 5px 0px;
+  font-size: 16px;
+  border: none;
+  border-radius: 24px;
+  color: white;
+  margin-bottom: 12px;
+  font-weight: "normal";
+
+  //background: rgba(35, 35, 37, 0.48);
+  border: 1px solid #C4C4C4;
+}
+.upper_case{
+  text-transform: uppercase;
+}

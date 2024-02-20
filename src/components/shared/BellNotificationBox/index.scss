@@ -1,0 +1,140 @@
+.notification-box {
+  position: absolute;
+  top: 24px;
+  width: 388px;
+  left: -175px;
+  background: #080a0c !important;
+  border-top-left-radius: 26px;
+  border-top-right-radius: 26px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  max-height: 494px;
+  min-height: 140px;
+
+  .notify-items-container {
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 450px;
+    min-height: 140px;
+    padding-bottom: 10px;
+  }
+  // .notify-item{
+  //   color: #fff;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   padding: 0 10px;
+  //   .notify-img{
+  //     display: inline-block;
+  //     border-radius: 25px;
+  //   }
+  // }
+}
+
+.notification-header {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: #5a5a5a;
+  border-top-left-radius: 26px;
+  border-top-right-radius: 26px;
+  align-items: center;
+  .title {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #d7d7d7;
+  }
+  .markAll {
+    font-family: "Ignazio Text";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #9a9c9d;
+    cursor: pointer;
+  }
+
+  .count {
+    border-radius: 15px;
+    border: 1px solid;
+  }
+}
+
+.notify-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 6px;
+  color: #9a9c9d;
+  .content {
+    display: flex;
+    color: black;
+    align-items: center;
+    .notify-img {
+      display: inline-block;
+      border-radius: 25px;
+      margin: 5px;
+      height: 33px;
+      width: 33px;
+    }
+    .text {
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      text-overflow: ellipsis;
+      /* identical to box height, or 138% */
+
+      /* System/text/Primary */
+
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 300px;
+    }
+    .time {
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      /* identical to box height, or 133% */
+
+      /* System/text/Input hint */
+
+      color: #616465;
+    }
+  }
+}
+
+.empty_notification {
+  color: #fff;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.count_two_digit_padding {
+  padding: 3px 5px;
+}
+.count_one_digit_padding {
+  padding: 0 6px;
+}
+
+.markAsReadItem {
+  color: #c4c4c4;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  /* identical to box height, or 138% */
+
+  /* System/text/Primary */
+  white-space: nowrap;
+  overflow: hidden;
+  width: 300px;
+}

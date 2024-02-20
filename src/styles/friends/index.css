@@ -1,0 +1,33 @@
+.ant-table-thead {
+}
+
+.ant-table-thead > tr > th {
+  background-color: #282828 !important;
+  border-top: 1px solid gray !important;
+  border-bottom: 1px solid gray !important;
+  color: white !important;
+  font-family: "Montserrat" !important;
+  font-weight: 300 !important;
+}
+
+.ant-table-thead > tr > th {
+  padding: 12px 8px 12px 14px !important;
+  height: 34px;
+}
+
+.ant-table {
+  background-color: #282828 !important;
+  color: white !important;
+}
+
+.ant-table-row {
+
+}
+
+.ant-table-tbody > tr > td {
+  border-bottom: 1px solid gray !important;
+}
+
+.ant-table-tbody > tr.ant-table-row-level-1:hover > td {
+  background: unset;
+}

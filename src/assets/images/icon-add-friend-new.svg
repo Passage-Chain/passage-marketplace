@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24.128" height="20.897" viewBox="0 0 24.128 20.897">
+  <g id="add-friend" transform="translate(-32.182 -36.706)">
+    <path id="Path_303" data-name="Path 303" d="M265.252,73.185c-1.022.9-1.9,1.887-3.573,1.887s-2.528-.979-3.544-1.863c-1.829,1.548-2.911,3.931-1.462,4.867a9.8,9.8,0,0,0,5.17,1.342,9.348,9.348,0,0,0,4.785-1.189C268.075,77.342,267.235,74.8,265.252,73.185Z" transform="translate(-222.663 -22.314)" fill="none" stroke="#fff" stroke-width="1"/>
+    <path id="Path_304" data-name="Path 304" d="M255.225,63.333A6.332,6.332,0,1,0,261.557,57,6.332,6.332,0,0,0,255.225,63.333Z" transform="translate(-222.543 -19.795)" fill="none" stroke="#fff" stroke-width="1"/>
+    <g id="Group_540" data-name="Group 540" transform="translate(51.828 40.056) rotate(45)">
+      <line id="Line_1" data-name="Line 1" x2="4.924" y2="4.924" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+      <line id="Line_2" data-name="Line 2" x1="4.924" y2="4.924" transform="translate(0 0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

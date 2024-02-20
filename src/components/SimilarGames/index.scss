@@ -1,0 +1,106 @@
+.similar_games_header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  width: 63vw;
+  height: 40px;
+
+  .header_text {
+    font-family: 'Ignazio Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+}
+
+.inline_block{
+  display: inline-block;
+  padding: 5px;
+}
+
+.similar_games_container {
+
+  padding: 5px;
+  color: #fff;
+  border-radius: 25px;
+  width: 64vw;
+}
+
+.carousel{
+  overflow: hidden;
+}
+
+.game_container{
+  display: flex;
+  justify-content: flex-start;
+  width: 64vw;
+
+  .game_container_child {
+    width: 21vw;
+    border-radius: 26px;
+  }
+}
+.slide {
+  display: none !important;
+  transition-duration: 1s ease;
+}
+
+.slide-active {
+  animation: slide 1s forwards;
+  transition-duration: 1s ease;
+
+  img {
+    width: 20vw;
+  }
+
+}
+
+.cursor_none{
+  pointer-events: none;
+  display: inline-block;
+  margin: 10px;
+  opacity: 0.5;
+
+  svg {
+    pointer-events: none;
+  }
+}
+
+.cursor_pointer{
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+}
+
+.game_title{
+
+  height: 40px;
+  margin-top: 10px;
+  font-family: "Ignazio Text";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+  color: #FFFFFF;
+}
+
+.game_tag{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  a {
+    border: 1px solid #525252;
+    border-radius: 100px;
+    padding: 1px 6px;
+    text-decoration: none;
+    margin-right: 10px;
+    color: #fff;
+  }
+}

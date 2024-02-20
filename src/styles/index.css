@@ -1,0 +1,10 @@
+@import url("./style.css");
+@import url("./player.css");
+@import url("./fonts.css");
+
+/* Friends */
+@import url("./friends/index.css");
+
+
+/* Settings */
+@import url("./settings/index.css");

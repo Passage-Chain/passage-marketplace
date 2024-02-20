@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="44" viewBox="0 0 42 44">
+	<defs>
+		<style>
+			.a3{fill:#451cff;}.b3{fill:#523ff9;}.c3{fill:#fff;}
+		</style>
+	</defs>
+	<circle class="a3" cx="21" cy="21" r="21" transform="translate(0 2)" />
+	<circle class="b3" cx="21" cy="21" r="21" />
+	<g transform="translate(12.785 7.68)">
+		<path class="c3" d="M61.308,127.586a7.163,7.163,0,0,0,7.163-7.161.936.936,0,0,0-1.867-.137.894.894,0,0,0,0,.137,5.3,5.3,0,0,1-5.3,5.289h-2.1a5.3,5.3,0,0,1-5.3-5.289.935.935,0,1,0-1.865-.137.893.893,0,0,0,0,.137,7.161,7.161,0,0,0,7.161,7.161h.114v1.4H55.47a.935.935,0,0,0,0,1.865h9.577a.935.935,0,0,0,0-1.865H61.194v-1.4Z" transform="translate(-52.043 -106.856)" />
+		<rect class="c3" width="9.571" height="13.291" rx="2.126" transform="translate(3.426 2)" />
+	</g>
+</svg>

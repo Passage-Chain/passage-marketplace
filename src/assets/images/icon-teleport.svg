@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="11.766" height="20.48" viewBox="0 0 11.766 20.48">
+  <g id="teleport" transform="translate(-576.556 -525.073)">
+    <path id="Path_307" data-name="Path 307" d="M255.225,62.384A5.383,5.383,0,1,0,260.608,57,5.383,5.383,0,0,0,255.225,62.384Z" transform="translate(321.832 468.572)" fill="none" stroke="#fff" stroke-width="1"/>
+    <line id="Line_134" data-name="Line 134" y2="4.246" transform="translate(582.301 538.086)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_135" data-name="Line 135" y1="2.246" transform="translate(586.461 540.003) rotate(135)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_136" data-name="Line 136" y1="2.246" transform="translate(578.145 540.003) rotate(-135)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <path id="Path_308" data-name="Path 308" d="M264.871,57.689s1.12.155,1.12.946-2.41,1.431-5.383,1.431-5.383-.641-5.383-1.431,1.287-.946,1.287-.946" transform="translate(321.831 484.988)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+  </g>
+</svg>

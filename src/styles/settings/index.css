@@ -1,0 +1,42 @@
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  font-family: "Niveau Grotesk Bold" !important;
+  font-size: 20px !important;
+  color: white !important;
+  background: transparent linear-gradient(180deg, #b261fa 0%, #523ff9 100%) 0%
+    0% no-repeat padding-box;
+  width: 200px;
+  height: 80px;
+  display: flex;
+  align-items: center !important;
+}
+
+.ant-card-body {
+  padding: 0px !important;
+}
+
+.ant-tabs-tab {
+  font-family: "Niveau Grotesk Bold" !important;
+  font-size: 20px !important;
+  color: white !important;
+  width: 200px;
+  height: 80px;
+  padding: 0px !important;
+  border-bottom: 1px solid #2e2e2e !important;
+}
+
+.ant-tabs-left > .ant-tabs-nav .ant-tabs-ink-bar {
+  width: 0px !important;
+  padding: 0px !important;
+}
+
+.ant-tabs-tab-btn {
+  padding-left: 20px !important;
+}
+
+.ant-tabs-left > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab {
+  margin: 0px !important;
+}
+
+.ant-tabs-nav {
+  border-right: 1px solid #2e2e2e;
+}

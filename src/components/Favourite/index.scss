@@ -1,0 +1,272 @@
+/* Minimized Favourite container */
+.mini-fav-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 16px 8px 16px;
+  gap: 8px;
+  isolation: isolate;
+  height: 52px;
+  background: #080A0C;
+  border-radius: 100px;
+
+  .minf-left {
+    .fav-icon {
+      width: 13.33px;
+      height: 13.34px;
+    }
+  }
+
+  .minf-right {
+    .expand-icon {
+      width: 9px;
+      height: 9px;
+      cursor: pointer;
+    }
+  }
+
+  .minf-middle {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    .world-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 100px;
+      cursor: pointer;
+    }
+  }
+}
+
+/* FAvourite Page */
+.favourite-page-container {
+  padding: 100px 135px;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+
+  .fp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .fp-header-left {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+
+      .fp-header-txt {
+        font-family: 'Ignazio Text';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 48px;
+        color: #FFFFFF;
+      }
+
+      .fp-header-count {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #C3CFD5;
+        border-radius: 100px;
+
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        color: #FFFFFF;
+      }
+    }
+
+    .fp-header-right {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+
+      .grid-icon-wrapper {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  .fp-content {
+    width: 100%;
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    flex-grow: 0;
+
+    .f-game-container {
+      width: 100%;
+      box-sizing: border-box;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin-bottom: 15px;
+
+
+      .f-game-img-wrapper {
+        width: 100%;
+        display: flex;
+        flex: 0 0 250px;
+        flex-direction: column;
+        justify-content: center;
+
+        .bookmark-wrapper {
+          position: absolute;
+          width: 32px;
+          height: 32px;
+          right: 12px;
+          top: 12px;
+          z-index: 9999;
+          cursor: pointer;
+          display: none;
+        }
+
+        .f-game-image {
+          width: 100%;
+          height: auto;
+          border-radius: 26px;
+          //aspect-ratio: 56/75;
+        }
+      }
+
+
+      .f-game-detail {
+        // flex: 1;
+        width: 100%;
+        padding: 10px;
+
+        .f-game-name {
+          font-family: 'Ignazio Text';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 24px;
+          text-transform: capitalize;
+          color: #FFFFFF;
+        }
+
+        .f-game-tags-wrapper {
+          display: flex;
+          align-items: center;
+          margin-top: 8px;
+          gap: 5px;
+          flex-wrap: wrap;
+
+          .f-game-tag {
+            display: flex;
+            align-items: center;
+            padding: 1px 6px;
+            height: 18px;
+            border: 1px solid #525252;
+            border-radius: 100px;
+
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            color: #FFFFFF;
+          }
+        }
+      }
+    }
+
+    .fp-list-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .fp-list {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        flex-wrap: wrap;
+
+        &:after {
+          content: "";
+          flex: auto;
+        }
+      }
+    }
+  }
+
+}
+
+/* Favourite Games Card */
+.favourite-game-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  // height: 492px;
+  border-radius: 16px;
+  gap: 4px;
+  position: relative;
+
+  .bookmark-wrapper {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    right: 12px;
+    top: 12px;
+    z-index: 9999;
+    cursor: pointer;
+    display: none;
+  }
+
+  .f-thumbnail-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 26px;
+  }
+
+  .f-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 8px 12px;
+
+    .f-name {
+      font-family: 'Ignazio Text';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 24px;
+      text-transform: capitalize;
+      color: #FFFFFF;
+    }
+
+    .f-tags {
+      display: flex;
+      gap: 5px;
+      height: 18px;
+
+      .f-tag {
+        display: flex;
+        align-items: center;
+        padding: 1px 6px;
+        height: 18px;
+        border: 1px solid #525252;
+        border-radius: 100px;
+
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #FFFFFF;
+      }
+    }
+  }
+}
