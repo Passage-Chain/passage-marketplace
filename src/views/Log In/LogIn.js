@@ -4,6 +4,7 @@ import "./index.scss";
 
 import { ReactComponent as RightArrowPointer } from "../../assets/images/arrow_left.svg";
 import { useSelector } from "react-redux";
+import UserDetails from "src/components/custom/UserDetails";
 
 export default function LogIn() {
   const token = useSelector((state) => state.account.token);
@@ -33,9 +34,9 @@ export default function LogIn() {
               </Link>
             </span>
             <div className="world-cta-wrapper new_logIn_button_container">
-              <button className="auth-button new-logIn-button">
-                <span>CONNECT WALLET</span>
-              </button>
+              <div style={{ paddingTop: "8px" }}>
+                <UserDetails />
+              </div>
             </div>
           </div>
         </div>

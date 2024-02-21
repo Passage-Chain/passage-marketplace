@@ -523,20 +523,20 @@
 }
 
 .contract-button {
-  background: #FCC672;
-  border: 1px solid #FCC672;
+  background: #fcc672;
+  border: 1px solid #fcc672;
   border-radius: 16px;
   font: normal normal 300 25px/29px niveau-grotesk;
-  color: #0C0D0F;
+  color: #0c0d0f;
   padding: 22px;
   width: 100%;
   margin-bottom: 15px;
   cursor: pointer;
 
   &:disabled {
-    border: 1px solid #7CB5F924;
-    color: #0C0D0F;
-    background: #4B4B4B;
+    border: 1px solid #7cb5f924;
+    color: #0c0d0f;
+    background: #4b4b4b;
     cursor: default;
   }
 }
@@ -605,11 +605,21 @@
   }
 }
 
+.ant-modal-content,
+.ant-modal-header,
+.ant-modal-footer {
+  background-color: #000;
+  color: #fff;
+  border: none;
+}
+
+.ant-modal-title {
+  color: #fff;
+}
 .list-nft {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
   .price-input {
     align-items: center;
   }
@@ -668,17 +678,17 @@
 }
 
 .modal-button {
-  border: 1px solid #7CB5F924;
+  border: 1px solid #7cb5f924;
   border-radius: 8px;
   padding: 16px;
   text-align: center;
   display: inline-block;
   font: normal normal 300 25px/29px niveau-grotesk;
-  color: #0C0D0F;
+  color: #0c0d0f;
   width: 100%;
 
   &.confirm {
-    background: #FCC672;
-    border: 1px solid #FCC672;
+    background: #fcc672;
+    border: 1px solid #fcc672;
   }
 }
