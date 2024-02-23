@@ -1,25 +1,25 @@
-import { Route } from "react-router";
-
 import WorldLayout from "../../layout/World";
 
-export default function GuardedRoute({
+const GuardedRoute = ({
   component: Component,
   auth,
   redirect,
-  path,
   authRequired = true,
   ...rest
-}) {
+}) => {
+  // Logic to check authentication and possibly redirect
+  if (!auth && authRequired) {
+    // Implement your redirection logic here
+    // For example, using navigate from react-router-dom v6
+    // navigate(redirect);
+  }
+
+  // Render the component within the layout if auth check passes
   return (
-    <Route
-      {...rest}
-      render={(props) => {
-        return (
-          <WorldLayout>
-            <Component {...props} {...rest} />
-          </WorldLayout>
-        );
-      }}
-    />
+    <WorldLayout>
+      <Component {...rest} />
+    </WorldLayout>
   );
-}
+};
+
+export default GuardedRoute;

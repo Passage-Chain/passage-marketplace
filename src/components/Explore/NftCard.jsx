@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { collectionForBaseContract } from "src/configs/collections";
 
 import contractConfig from "../../configs/contract";
@@ -23,7 +23,7 @@ const NftCard = (props) => {
   const [data, setData] = useState(props.data);
   const [collection, setCollection] = useState();
   const [loaded, setLoaded] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const c = collectionForBaseContract(props.baseContract);
@@ -54,7 +54,7 @@ const NftCard = (props) => {
     <div
       className="nft-card-container"
       onClick={(e) => {
-        history.push(`/marketplace/${props.baseContract}/${data.token_id}`);
+        navigate(`/marketplace/${props.baseContract}/${data.token_id}`);
       }}
     >
       {collection && (

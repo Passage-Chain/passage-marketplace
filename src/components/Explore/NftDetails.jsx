@@ -1,4 +1,4 @@
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useContract from "../../services/contract";
 import useWalletAddress from "../../hooks/useWalletAddress";
 import ConfirmationModal from "./ConfirmationModal";
@@ -29,7 +29,7 @@ const classes = {
 
 const NftDetails = () => {
   const { baseContract, id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   const contract = useContract("cosmwasm-stargate");
   const [collection, setCollection] = useState();
   const [loaded, setLoaded] = useState(false);
@@ -144,13 +144,13 @@ const NftDetails = () => {
         <div className="ex-header">
           <span
             className="ex-header-txt clickable"
-            onClick={() => history.push("/marketplace")}
+            onClick={() => navigate("/marketplace")}
           >
             Marketplace
           </span>
           <button
             className="my-collection-btn"
-            onClick={() => history.push("/marketplace/my-collection")}
+            onClick={() => navigate("/marketplace/my-collection")}
           >
             My Collection
           </button>

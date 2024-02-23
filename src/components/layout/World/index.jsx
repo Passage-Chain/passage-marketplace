@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Tooltip } from "antd";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import ExploreIcon from "../../../assets/images-v2/explore.svg";
 import ActiveExploreIcon from "../../../assets/images-v2/explore-active.svg";
@@ -12,10 +12,10 @@ import UserDetails from "../../custom/UserDetails";
 import "./index.scss";
 
 const Header = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const gotoHomePage = () => {
-    history.push("/discover");
+    navigate("/discover");
   };
 
   return (
@@ -38,7 +38,7 @@ const Header = () => {
 const SideOptions = () => {
   const [activeOption, setActiveOption] = useState("");
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const routes = [
@@ -54,7 +54,7 @@ const SideOptions = () => {
   }, [location?.pathname]);
 
   const gotoExplore = () => {
-    history.push("/marketplace");
+    navigate("/marketplace");
   };
 
   const handleExploreClick = () => {
@@ -64,7 +64,7 @@ const SideOptions = () => {
 
   const handleMintClick = () => {
     setActiveOption("mint");
-    history.push("/mint");
+    navigate("/mint");
   };
 
   // icon color: rgb(155	156	157)

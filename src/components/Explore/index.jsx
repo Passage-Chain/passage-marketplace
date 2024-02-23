@@ -20,7 +20,7 @@ import LargeGridIcon from "../../assets/images-v2/large-grid.svg";
 import SearchIcon from "../../assets/images-v2/search.svg";
 import "./index.scss";
 import Toast from "../custom/CustomToast";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SORT_OPTION = {
   PRICE: "price",
@@ -66,7 +66,7 @@ const Explore = (props) => {
   const [gridView, setGridView] = useState(GRID_OPTIONS.LARGE);
   const [payload, setPayload] = useState({});
   const debouncedSearchText = useDebounce(searchString, 1000);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const contractsByBase = contractsByBaseContract();
 
@@ -89,10 +89,10 @@ const Explore = (props) => {
 
   const toggleMyCollection = (show = !myCollection) => {
     if (show) {
-      history.push("/marketplace/my-collection");
+      navigate("/marketplace/my-collection");
       setMyCollection(true);
     } else {
-      history.push("/marketplace");
+      navigate("/marketplace");
       setMyCollection(false);
     }
   };
@@ -151,7 +151,7 @@ const Explore = (props) => {
       Toast.error("error", error.response.data.message);
 
       if (error.response.status === 401) {
-        history.push("/");
+        navigate("/");
       }
       setNftList([]);
     }

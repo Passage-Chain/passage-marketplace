@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 import Login from "./views/Log In/LogIn";
 
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import GuardedRoute from "./components/utils/GuardedRoute";
 
@@ -35,44 +35,41 @@ function App() {
   });
   return (
     <div id="app" className="App">
-      <Switch>
-        <Route exact path="/" component={Login} />
-        <Switch>
-          <GuardedRoute
-            exact
-            path="/marketplace"
-            component={Explore}
-            myCollection={false}
-            authRequired={false}
-          />
-          <GuardedRoute
-            exact
-            path="/marketplace/my-collection"
-            component={Explore}
-            myCollection={true}
-            authRequired={false}
-          />
-          <GuardedRoute
-            path="/marketplace/:baseContract/:id"
-            component={NftDetails}
-            authRequired={false}
-          />
-          <GuardedRoute
-            exact
-            path="/mint"
-            component={Mints}
-            authRequired={false}
-          />
-          <GuardedRoute
-            path="/mint/:mintContract"
-            component={Mint}
-            authRequired={false}
-          />
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
-      </Switch>
+      <Routes>
+        <Route exact path="/" element={<Login />} />
+        <Route
+          path="/marketplace"
+          element={
+            <GuardedRoute
+              component={Explore}
+              myCollection={false}
+              authRequired={false}
+            />
+          }
+        />
+        <Route
+          path="/marketplace/my-collection"
+          element={
+            <GuardedRoute
+              component={Explore}
+              myCollection={true}
+              authRequired={false}
+            />
+          }
+        />
+        <Route
+          path="/marketplace/:baseContract/:id"
+          element={<GuardedRoute component={NftDetails} authRequired={false} />}
+        />
+        <Route
+          path="/mint"
+          element={<GuardedRoute component={Mints} authRequired={false} />}
+        />
+        <Route
+          path="/mint/:mintContract"
+          element={<GuardedRoute component={Mint} authRequired={false} />}
+        />
+      </Routes>
       <ToastContainer
         position="bottom-right"
         hideProgressBar={true}
