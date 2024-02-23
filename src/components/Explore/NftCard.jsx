@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  collectionForCollectionName,
-  collectionForBaseContract,
-} from "src/configs/collections";
+import { collectionForBaseContract } from "src/configs/collections";
 
-import { normalizeToken } from "src/utils/nftHelpers";
 import contractConfig from "../../configs/contract";
 import PassageLogoIcon from "../../assets/images/left_menu_passageLogo.svg";
 
@@ -38,7 +34,6 @@ const NftCard = (props) => {
   const loadNFT = async (id, baseContract) => {
     try {
       //const service = await contract
-      let marketData = {};
       let tokenData = props.data;
       setData(tokenData);
 

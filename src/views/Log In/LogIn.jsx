@@ -1,18 +1,11 @@
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../styles/style.css";
 import "./index.scss";
 
 import { ReactComponent as RightArrowPointer } from "../../assets/images/arrow_left.svg";
-import { useSelector } from "react-redux";
 import UserDetails from "src/components/custom/UserDetails";
 
 export default function LogIn() {
-  const token = useSelector((state) => state.account.token);
-
-  if (token) {
-    return <Redirect to="/discover" />;
-  }
-
   return (
     <>
       <div className="world-container">

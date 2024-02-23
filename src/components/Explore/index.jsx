@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { CustomSelect } from "../custom";
 import NftCard from "./NftCard";
 import UserCollection from "./UserCollection";
@@ -15,14 +14,13 @@ import useDebounce from "../../hooks/useDebounce";
 import useWalletAddress from "src/hooks/useWalletAddress";
 import { CustomSearchInput } from "../custom";
 
-import { ReactComponent as ExpandFilterIcon } from "../../assets/images-v2/expand-filter.svg";
-import { ReactComponent as SmallGridIcon } from "../../assets/images-v2/small-grid.svg";
-import { ReactComponent as LargeGridIcon } from "../../assets/images-v2/large-grid.svg";
-import { ReactComponent as SearchIcon } from "../../assets/images-v2/search.svg";
+import ExpandFilterIcon from "../../assets/images-v2/expand-filter.svg";
+import SmallGridIcon from "../../assets/images-v2/small-grid.svg";
+import LargeGridIcon from "../../assets/images-v2/large-grid.svg";
+import SearchIcon from "../../assets/images-v2/search.svg";
 import "./index.scss";
 import Toast from "../custom/CustomToast";
 import { useHistory } from "react-router-dom";
-import { setWallet } from "src/redux/accountSlice";
 
 const SORT_OPTION = {
   PRICE: "price",
@@ -58,13 +56,10 @@ const Explore = (props) => {
   const [searchString, setSearchString] = useState("");
   const [setSelectedCollection] = useState("");
 
-  // guestUser Address
-  const guestAddress = useSelector((state) => state.guest.walletAddress);
-
   // loggedInAddress since it condiitonally renders if user is logged in
   const { address: loggedInAddress } = useWalletAddress();
 
-  const address = guestAddress || loggedInAddress;
+  const address = loggedInAddress;
 
   const [showFilterSider, setShowFilterSider] = useState(false);
   const [myCollection, setMyCollection] = useState(props.myCollection);
@@ -77,10 +72,6 @@ const Explore = (props) => {
 
   // TODO: Clean up wallet stuff
   // const activeWallet = address || wallet;
-
-  if (address) {
-    setWallet(address);
-  }
 
   useEffect(() => {
     fetchNftList(true, 1);
@@ -249,7 +240,7 @@ const Explore = (props) => {
         onChange={handleSearch}
         value={searchString}
         maxLength={50}
-        suffix={<SearchIcon />}
+        suffix={<img src={SearchIcon} alt="search icon" />}
       />
     );
   };
@@ -273,7 +264,12 @@ const Explore = (props) => {
         </div>
 
         <div className="ex-subheader">
-          <ExpandFilterIcon className="expand-icon" onClick={toggleSider} />
+          <img
+            src={ExpandFilterIcon}
+            className="expand-icon"
+            alt="expand icon"
+            onClick={toggleSider}
+          />
 
           <div className="subheader-right">
             {renderSearchInput()}
@@ -282,13 +278,13 @@ const Explore = (props) => {
               className="grid-icon-wrapper"
               onClick={() => setGridView(GRID_OPTIONS.SMALL)}
             >
-              <SmallGridIcon className="grid-icon" />
+              <img src={SmallGridIcon} className="grid-icon" alt="small grid" />
             </div>
             <div
               className="grid-icon-wrapper"
               onClick={() => setGridView(GRID_OPTIONS.LARGE)}
             >
-              <LargeGridIcon className="grid-icon" />
+              <img src={LargeGridIcon} className="grid-icon" alt="large grid" />
             </div>
           </div>
         </div>

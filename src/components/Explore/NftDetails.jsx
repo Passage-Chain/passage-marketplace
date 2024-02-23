@@ -3,8 +3,6 @@ import useContract from "../../services/contract";
 import useWalletAddress from "../../hooks/useWalletAddress";
 import ConfirmationModal from "./ConfirmationModal";
 import NftActionModal from "./NftActionModal";
-import GameModal from "../shared/GameModal";
-import { useSelector } from "react-redux";
 import {
   Accordion,
   Table,
@@ -16,21 +14,10 @@ import {
   collectionForBaseContract,
   marketContractForBase,
 } from "src/configs/collections";
-import contractConfig from "../../configs/contract";
 import { normalizeToken } from "src/utils/nftHelpers";
 import { useEffect, useState } from "react";
 import { imageHttpUrl } from "./NftCard";
 import Toast from "../custom/CustomToast";
-
-const LISTING_ACTIONS = {
-  BUY: "buy",
-  SELL: "sell",
-  DELIST: "delist",
-  EDIT: "edit",
-  OFFER: "offer",
-  TRANSFER: "transfer",
-  PURCHASE_SUCCESS: "purchase_success",
-};
 
 const classes = {
   table: {

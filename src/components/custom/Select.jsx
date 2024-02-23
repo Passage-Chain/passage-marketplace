@@ -1,18 +1,18 @@
 import React from "react";
 import { Select } from "antd";
-import { ReactComponent as ArrowDownIcon } from "../../assets/images-v2/dropdown.svg";
+import ArrowDownIcon from "../../assets/images-v2/dropdown.svg";
 import "./index.scss";
 
-const { Option } = Select
+const { Option } = Select;
 
-const CustomSelect = ({ 
-  options = [], 
-  placeHolder = "Select", 
-  value, 
-  onChange, 
+const CustomSelect = ({
+  options = [],
+  placeHolder = "Select",
+  value,
+  onChange,
   style = {},
-  suffixIcon = <ArrowDownIcon />,
-  label
+  suffixIcon = <img src={ArrowDownIcon} alt="arrow icon" />,
+  label,
 }) => {
   return (
     <>

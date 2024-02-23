@@ -12,53 +12,27 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import GuardedRoute from "./components/utils/GuardedRoute";
 
-import settingService from "./services/settings";
 import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
-import { useDispatch } from "react-redux";
-import { setId, setUsername, setEmail } from "./redux/accountSlice";
-
-import useWhoami from "./hooks/useWhoami";
 
 import NftDetails from "./components/Explore/NftDetails";
 import Explore from "./components/Explore";
 import Mints from "./components/Mint";
-import Mint from "./components/Mint/Mint.js";
+import Mint from "./components/Mint/Mint";
 
 function App() {
-  const dispatch = useDispatch();
-
   function handleResize() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   }
 
-  useWhoami();
-
   const screens = useBreakpoint();
   handleResize();
-
-  useEffect(() => {
-    fetchUserDetails();
-  }, []);
-
   useEffect(() => {
     if (!screens.md) window.addEventListener("resize", handleResize);
     return () => {
       if (!screens.md) window.removeEventListener("resize", handleResize);
     };
   });
-
-  const fetchUserDetails = async () => {
-    try {
-      const response = await settingService.getUserDetails();
-      dispatch(setId(response.data.id));
-      dispatch(setUsername(response.data.nickname));
-      dispatch(setEmail(response.data.email));
-    } catch (error) {
-      console.log("error", error.response.data.message);
-    }
-  };
-
   return (
     <div id="app" className="App">
       <Switch>

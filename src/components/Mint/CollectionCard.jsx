@@ -1,5 +1,4 @@
 import { useHistory } from "react-router";
-//import LiveBadge from "./LiveBadge";
 import { ReactComponent as PassageLogoIcon } from "../../assets/images/left_menu_passageLogo.svg";
 
 function CollectionCard(props) {
