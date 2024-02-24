@@ -303,8 +303,9 @@ const Explore = (props) => {
               {myCollection ? (
                 <UserCollection gridView={gridView} address={address} />
               ) : (
-                nftList.map((nft) => (
+                nftList.map((nft, index) => (
                   <div
+                    key={index}
                     style={{
                       flex: GRID_OPTIONS.SMALL === gridView ? "18%" : "23%",
                       maxWidth: calculateMinMaxWidth(),
