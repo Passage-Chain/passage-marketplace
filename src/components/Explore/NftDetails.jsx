@@ -13,8 +13,8 @@ import {
 import {
   collectionForBaseContract,
   marketContractForBase,
-} from "src/configs/collections";
-import { normalizeToken } from "src/utils/nftHelpers";
+} from "../../configs/collections";
+import { normalizeToken } from "../../utils/nftHelpers";
 import { useEffect, useState } from "react";
 import { imageHttpUrl } from "./NftCard";
 import Toast from "../custom/CustomToast";

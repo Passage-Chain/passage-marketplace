@@ -9,9 +9,9 @@ import contractConfig from "../../configs/contract";
 import {
   collectionForCollectionName,
   contractsByBaseContract,
-} from "src/configs/collections";
+} from "../../configs/collections";
 import useDebounce from "../../hooks/useDebounce";
-import useWalletAddress from "src/hooks/useWalletAddress";
+import useWalletAddress from "../../hooks/useWalletAddress";
 import { CustomSearchInput } from "../custom";
 
 import ExpandFilterIcon from "../../assets/images-v2/expand-filter.svg";

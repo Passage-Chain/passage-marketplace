@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { ReactComponent as PassageLogoIcon } from "../../assets/images/left_menu_passageLogo.svg";
+import PassageLogoIcon from "../../assets/images/left_menu_passageLogo.svg";
 
 function CollectionCard(props) {
   const navigate = useNavigate();
@@ -78,7 +78,8 @@ function CollectionCard(props) {
                   <span className="label">PRICE</span>
                   <span className="value price">
                     {convertUATOMToATOM(props?.mint.price)}
-                    <PassageLogoIcon
+                    <img
+                      src={PassageLogoIcon}
                       alt="PASG"
                       style={{ height: "20px", paddingBottom: "3px" }}
                     />

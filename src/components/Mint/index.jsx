@@ -1,6 +1,6 @@
 //import contractConfig from "../../configs/contract";
 import CollectionCard from "./CollectionCard";
-import { mintableCollections } from "src/configs/collections";
+import { mintableCollections } from "../../configs/collections";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
 

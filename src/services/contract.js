@@ -6,7 +6,7 @@ import { MsgExecuteContract } from "cosmjs-types/cosmwasm/wasm/v1/tx";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { toUtf8 } from "@cosmjs/encoding";
 import { Decimal } from "@cosmjs/math";
-import Toast from "src/components/custom/CustomToast";
+import Toast from "../components/custom/CustomToast";
 
 const makeConnection = async (
   signingClient,
@@ -182,9 +182,9 @@ const useContract = async (
 
   const getNumTokens = async (base) => {
     return client.queryContractSmart(base, {
-      num_tokens: {}
+      num_tokens: {},
     });
-  }
+  };
 
   const getTokensByOwner = async (owner, base = baseContract) => {
     return client.queryContractSmart(base, {

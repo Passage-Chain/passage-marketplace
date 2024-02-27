@@ -5,7 +5,7 @@ import contractConfig from "../../configs/contract";
 import useContract from "../../services/contract";
 import { validateAddress } from "./utils";
 import Loader from "../../components/Loader";
-import { collectionForBaseContract } from "src/configs/collections";
+import { collectionForBaseContract } from "../../configs/collections";
 
 const NftActionModal = ({
   setRefreshTokenData,

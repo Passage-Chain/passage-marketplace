@@ -1,4 +1,4 @@
-import contractConfig from "src/configs/contract";
+import contractConfig from "../configs/contract";
 
 const getOfflineSigner = async (network, wallet) => {
   if (window && window.getOfflineSigner) {

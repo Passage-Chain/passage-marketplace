@@ -15,7 +15,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const gotoHomePage = () => {
-    navigate("/discover");
+    navigate("/");
   };
 
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { collectionForBaseContract } from "src/configs/collections";
+import { collectionForBaseContract } from "../../configs/collections";
 
 import contractConfig from "../../configs/contract";
 import PassageLogoIcon from "../../assets/images/left_menu_passageLogo.svg";

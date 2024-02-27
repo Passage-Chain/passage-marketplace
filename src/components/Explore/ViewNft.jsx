@@ -1,11 +1,16 @@
-import React from 'react';
-import { Modal } from 'antd';
+import React from "react";
+import { Modal } from "antd";
 
-import { ReactComponent as CloseIcon } from '../../assets/images-v2/close-modal.svg'
-import StrangeClanLogo from '../../assets/images-v2/strange-clan-sm.png'
-import MetahuahuaLogo from '../../assets/images-v2/metahuahuaLogo.png'
+import CloseIcon from "../../assets/images-v2/close-modal.svg";
+import StrangeClanLogo from "../../assets/images-v2/strange-clan-sm.png";
+import MetahuahuaLogo from "../../assets/images-v2/metahuahuaLogo.png";
 
-const ViewNft = ({ show, handleClose, nftDetails, handleViewOnMarketplace }) => {
+const ViewNft = ({
+  show,
+  handleClose,
+  nftDetails,
+  handleViewOnMarketplace,
+}) => {
   return (
     <Modal
       title=""
@@ -13,46 +18,44 @@ const ViewNft = ({ show, handleClose, nftDetails, handleViewOnMarketplace }) => 
       onCancel={handleClose}
       footer={null}
       className="view-nft-container"
-      closeIcon={<CloseIcon style={{ width: 15, height: 15 }} />}
+      closeIcon={<img src={CloseIcon} style={{ width: 15, height: 15 }} />}
       centered
     >
-      <div className='vn-header'>{nftDetails?.name}</div>
-      <div className='vn-content'>
+      <div className="vn-header">{nftDetails?.name}</div>
+      <div className="vn-content">
         <img
-          className='vn-nft-image'
+          className="vn-nft-image"
           src={nftDetails?.image}
           alt={nftDetails?.name}
         />
-        <div className='vn-nft-details-wrapper'>
-          <div className='nft-name'>
-            {nftDetails?.name}
-          </div>
-          <div className='collection-detail'>
+        <div className="vn-nft-details-wrapper">
+          <div className="nft-name">{nftDetails?.name}</div>
+          <div className="collection-detail">
             <img
-              src={nftDetails?.collectionName === 'MetaHuahua' ? MetahuahuaLogo : StrangeClanLogo}
+              src={
+                nftDetails?.collectionName === "MetaHuahua"
+                  ? MetahuahuaLogo
+                  : StrangeClanLogo
+              }
               alt="clan"
-              className='clan-logo'
+              className="clan-logo"
             />
-            <span className='clan-name'>{nftDetails?.collectionName}</span>
+            <span className="clan-name">{nftDetails?.collectionName}</span>
           </div>
-          <div className='nft-token-id'>
-            {nftDetails?.tokenId}
-          </div>
-          <div className='nft-price'>
-            {nftDetails?.price}
-          </div>
+          <div className="nft-token-id">{nftDetails?.tokenId}</div>
+          <div className="nft-price">{nftDetails?.price}</div>
         </div>
       </div>
-      <div className='vn-footer'>
+      <div className="vn-footer">
         <button
-          className='vn-marketplace-btn'
+          className="vn-marketplace-btn"
           onClick={handleViewOnMarketplace}
         >
           View on Marketplace
         </button>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
-export default ViewNft
+export default ViewNft;

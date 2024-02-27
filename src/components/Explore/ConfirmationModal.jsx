@@ -1,4 +1,4 @@
-import { collectionForBaseContract } from "src/configs/collections";
+import { collectionForBaseContract } from "../../configs/collections";
 import Toast from "../custom/CustomToast";
 import { Modal } from "antd";
 
@@ -22,8 +22,8 @@ const ConfirmationModal = ({
         // TODO: txId.transactionHash can be a URL to scanner tx
         `Item was successfully delisted! ${txId}`
       );
-    } catch(err) {
-      Toast.contractError(err.message)
+    } catch (err) {
+      Toast.contractError(err.message);
     }
   };
 
@@ -49,10 +49,7 @@ const ConfirmationModal = ({
           >
             Delist
           </button>
-          <button
-            className="contract-button"
-            onClick={() => setVisible(false)}
-          >
+          <button className="contract-button" onClick={() => setVisible(false)}>
             Cancel
           </button>
         </div>

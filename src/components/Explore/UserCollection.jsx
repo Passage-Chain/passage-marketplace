@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import NftCard from "./NftCard";
 import axios from "axios";
 import contractConfig from "../../configs/contract";
-import { contractsByBaseContract } from "src/configs/collections";
+import { contractsByBaseContract } from "../../configs/collections";
 
 const GRID_OPTIONS = {
   LARGE: "LARGE",

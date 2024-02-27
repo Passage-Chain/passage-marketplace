@@ -10,7 +10,7 @@
   background-size: cover;
   width: 100%;
   height: 100%;
-  z-index: 2!important;
+  z-index: 2 !important;
   position: relative;
 
   .wl-header {
@@ -18,6 +18,7 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 0px 32px;
+    cursor: pointer;
     position: fixed;
     width: 100%;
     z-index: 99999999;
@@ -25,18 +26,18 @@
     .passage-logo {
       margin-top: 22px;
     }
-    .searchbar{
+    .searchbar {
       position: relative;
-      top:16px!important;
-      padding-left :35px!important;
-      Width:726px;
-      Height:52px;
-      padding-right: 32px!important;
+      top: 16px !important;
+      padding-left: 35px !important;
+      width: 726px;
+      height: 52px;
+      padding-right: 32px !important;
     }
     .header-options {
-      padding-left:32px!important;
+      padding-left: 32px !important;
       display: flex;
-      gap: 32px!important;
+      gap: 32px !important;
       padding-top: 16px;
       position: relative;
     }
@@ -51,7 +52,7 @@
     align-items: center;
     gap: 25px;
     padding: 25px 10px;
-    background: #080A0C;
+    background: #080a0c;
     border-radius: 100px;
     z-index: 999999;
 
@@ -71,5 +72,4 @@
       right: 32px;
     }
   }
-
 }

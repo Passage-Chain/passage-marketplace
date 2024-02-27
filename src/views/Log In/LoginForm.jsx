@@ -8,7 +8,7 @@ import PassageLogo from "../../assets/images/Passage_VerticalLogoWhite 1.svg";
 import loginBg from "../../assets/images/signin-bg.png";
 
 import Toast from "../../components/custom/CustomToast";
-import Wallet from "src/services/wallet";
+import Wallet from "../../services/wallet";
 
 export default function LogInForm({ alpha, handleRedirection, closeModal }) {
   // check if user is logged in or connected with wallet
