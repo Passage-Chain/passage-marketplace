@@ -23,21 +23,21 @@ Welcome to the Passage Marketplace repo! This project leverages the fast and mod
 
 1. Clone the repository:
 
-git clone https://github.com/Passage-Chain/passage-marketplace.git
+`git clone https://github.com/Passage-Chain/passage-marketplace.git`
 
 2. Navigate to the project directory:
 
-cd passage-marketplace
+`cd passage-marketplace`
 
 3. Install dependencies:
 
-npm install
+`npm install`
 
 ### Running the Project
 
 To start the development server with Vite and React:
 
-npm run dev
+`npm run dev`
 
 This command will launch the project on `http://localhost:3000` with hot module replacement enabled, allowing you to see your changes in real-time.
 
