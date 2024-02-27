@@ -1,14 +1,11 @@
-export const shortenAddress = (address: string, count: number = 6): string => {
+export const shortenAddress = (address, count = 6) => {
   const front = address.slice(0, count);
   const ellipsis = "...";
 
   return `${front}${ellipsis}`;
 };
 
-export const validateAddress = (
-  address: string,
-  loggedInAddress: string
-): boolean => {
+export const validateAddress = (address, loggedInAddress) => {
   // make sure it's not the current logged in address
   console.log("address", loggedInAddress);
   if (address === loggedInAddress) {

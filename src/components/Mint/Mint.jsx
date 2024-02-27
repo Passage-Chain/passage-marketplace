@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { collectionForMintContract } from "src/configs/collections";
 import useWalletAddress from "../../hooks/useWalletAddress";
 import { useParams } from "react-router";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useContract from "../../services/contract";
 import Toast from "../custom/CustomToast";
 import "./index.scss";
@@ -24,7 +24,7 @@ function Mint() {
   const [config, setConfig] = useState({});
   const walletAddress = useWalletAddress();
   const contract = useContract("cosmwasm-stargate");
-  const history = useHistory();
+  const navigate = useNavigate();
   const [status, setStatus] = useState("Starting soon");
 
   const mintNFT = () => {
@@ -49,7 +49,7 @@ function Mint() {
               {
                 /*logo: <img src={StrangeClan} alt="Success" />,*/
                 handleClick: () =>
-                  history.push(
+                  navigate(
                     `/marketplace/${collection.contracts.base}/${tokenId}`
                   ),
               }
@@ -118,11 +118,9 @@ function Mint() {
       <div className="explore-container">
         <div className="ex-header">
           <span className="ex-header-txt clickable">
-            <span onClick={() => history.push("/marketplace")}>
-              Marketplace
-            </span>
+            <span onClick={() => navigate("/marketplace")}>Marketplace</span>
             {" > "}
-            <span onClick={() => history.push("/mint")}>Mints</span>
+            <span onClick={() => navigate("/mint")}>Mints</span>
             {" > "}
             <span className="active">{collection?.label}</span>
           </span>

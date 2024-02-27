@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input } from "antd";
-import { ReactComponent as SearchIcon } from "../../assets/images-v2/search.svg";
+import searchIcon from "../../assets/images-v2/search.svg";
 import "./index.scss";
 
 const styles = {
@@ -30,7 +30,7 @@ const SearchInput = ({
   style = {},
   suffix,
   prefix,
-  onKeyDown = () => {}
+  onKeyDown = () => {},
 }) => {
   const [expand, setExpand] = useState(expanded);
 
@@ -45,7 +45,9 @@ const SearchInput = ({
     >
       {!expand ? (
         <div style={styles.minSearchWrapper}>
-          <SearchIcon
+          <img
+            alt="search icon"
+            src={searchIcon}
             style={styles.searchIcon}
             onClick={() => setExpand(true)}
           />
@@ -60,8 +62,10 @@ const SearchInput = ({
           onKeyDown={onKeyDown}
           suffix={
             suffix || (
-              <SearchIcon
+              <img
+                src={searchIcon}
                 className="cursor-pointer"
+                alt="search icon"
                 onClick={() => (expanded ? "" : setExpand(false))}
               />
             )

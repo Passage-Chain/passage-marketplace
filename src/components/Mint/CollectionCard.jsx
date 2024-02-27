@@ -1,9 +1,8 @@
-import { useHistory } from "react-router";
-//import LiveBadge from "./LiveBadge";
+import { useNavigate } from "react-router";
 import { ReactComponent as PassageLogoIcon } from "../../assets/images/left_menu_passageLogo.svg";
 
 function CollectionCard(props) {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const convertUATOMToATOM = (uatom) => {
     return `${uatom / 1000000}`;
@@ -44,7 +43,7 @@ function CollectionCard(props) {
               style={{ color: "#FCD996" }}
               onClick={(e) => {
                 e.preventDefault();
-                history.push(`/mint/${props.contracts.mint}`);
+                navigate(`/mint/${props.contracts.mint}`);
               }}
               className="card-text stretched-link text-decoration-none"
             >
