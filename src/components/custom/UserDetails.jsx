@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import "./index.scss";
 import { Modal } from "antd";
 
-import LogInForm from "src/views/Log In/LoginForm";
+import LogInForm from "../../views/Log In/LoginForm";
 
 const UserDetails = () => {
   const [open, setOpen] = useState(false);

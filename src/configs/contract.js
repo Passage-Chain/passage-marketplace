@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 const contractConfig = {
   PRICE_FEED_API: "https://api.coingecko.com/api/v3/simple/price",
   //RPC: "https://juno-rpc.stakely.io",

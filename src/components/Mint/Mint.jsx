@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { collectionForMintContract } from "src/configs/collections";
+import { collectionForMintContract } from "../../configs/collections";
 import useWalletAddress from "../../hooks/useWalletAddress";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
