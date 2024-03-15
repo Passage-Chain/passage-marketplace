@@ -23,44 +23,20 @@ function SideFilter(props) {
   const [selectedFilters, setSelectedFilters] = useState({});
 
   //For Accordian
-  const [open, setOpen] = useState("");
+  const [open, setOpen] = useState("collections");
   const toggle = (id) => {
     if (open === id) {
-      setOpen();
+      setOpen("");
     } else {
       setOpen(id);
     }
   };
-
-  // Get filterable attributes for a collection
-  /*useEffect(() => {
-      if (open) {
-        const cg = {
-          ...collections.filter(c => !c.avatar)
-        }
-        setGroupedCollections(cg);
-      }
-    }, [open])*/
 
   useEffect(() => {
     if (collection) {
       fetchTraits();
     }
   }, [collection]);
-
-  /*const fetchCollections = async () => {
-      try {
-        //const response = await axios.get(`${contractConfig.NFT_API}/collections/getCollections`)
-        //const response = await axios.get(`${contractConfig.NFT_API}/collections/all/data`)
-        //const collections = response.data?.collections || []
-
-        setCollections(collections)
-        const collection = collections.length > 0 ? collections[0] : ''
-        setCollection(collection)
-      } catch (err) {
-        handleApiError(err);
-      }
-    }*/
 
   const fetchTraits = async () => {
     try {
@@ -123,70 +99,68 @@ function SideFilter(props) {
 
   return (
     <>
-      {props.show ? (
-        <div className="ex-side-filter-container">
-          <Accordion open={open} toggle={toggle} stayOpen>
-            <AccordionItem stayOpen>
-              <AccordionHeader className="sf-header" targetId="collections">
-                COLLECTIONS
-              </AccordionHeader>
-              <AccordionBody accordionId="collections">
-                {!!(collections && collections.length) &&
-                  collections.map((c, index) => (
-                    <div
-                      key={index}
-                      className={`sf-item-wrapper ${
-                        c === collection ? "selected-collection" : ""
-                      }`}
+      <div className="ex-side-filter-container">
+        <Accordion open={open} toggle={toggle} stayOpen>
+          <AccordionItem stayOpen>
+            <AccordionHeader className="sf-header" targetId="collections">
+              COLLECTIONS
+            </AccordionHeader>
+            <AccordionBody accordionId="collections">
+              {!!(collections && collections.length) &&
+                collections.map((c, index) => (
+                  <div
+                    key={index}
+                    className={`sf-item-wrapper ${
+                      c === collection ? "selected-collection" : ""
+                    }`}
+                  >
+                    <span
+                      key={c.id}
+                      onClick={() => handleCollectionSelection(c)}
                     >
+                      {c.label}
+                    </span>
+                  </div>
+                ))}
+            </AccordionBody>
+          </AccordionItem>
+
+          {collection?.label !== "MetaHuahua" &&
+            attributes.map((attribute, index) => (
+              <AccordionItem key={index} stayOpen>
+                <AccordionHeader
+                  className="sf-header"
+                  targetId={attribute.type}
+                >
+                  {titleize(attribute.type)}
+                </AccordionHeader>
+                <AccordionBody accordionId={attribute.type}>
+                  {attribute.values.sort().map((option, i) => (
+                    <div className="sf-item-wrapper" key={i}>
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id={`${option}-box`}
+                        onChange={() =>
+                          handleSelections(option, attribute.type)
+                        }
+                        checked={selectedFilters[
+                          attribute.type
+                        ]?.state?.includes(option)}
+                      />
                       <span
-                        key={c.id}
-                        onClick={() => handleCollectionSelection(c)}
+                        className="form-check-label"
+                        htmlFor={`${option}-box`}
                       >
-                        {c.label}
+                        {titleize(option)}
                       </span>
                     </div>
                   ))}
-              </AccordionBody>
-            </AccordionItem>
-
-            {collection?.label !== "MetaHuahua" &&
-              attributes.map((attribute, index) => (
-                <AccordionItem key={index} stayOpen>
-                  <AccordionHeader
-                    className="sf-header"
-                    targetId={attribute.type}
-                  >
-                    {titleize(attribute.type)}
-                  </AccordionHeader>
-                  <AccordionBody accordionId={attribute.type}>
-                    {attribute.values.sort().map((option, i) => (
-                      <div className="sf-item-wrapper" key={i}>
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          id={`${option}-box`}
-                          onChange={() =>
-                            handleSelections(option, attribute.type)
-                          }
-                          checked={selectedFilters[
-                            attribute.type
-                          ]?.state?.includes(option)}
-                        />
-                        <span
-                          className="form-check-label"
-                          htmlFor={`${option}-box`}
-                        >
-                          {titleize(option)}
-                        </span>
-                      </div>
-                    ))}
-                  </AccordionBody>
-                </AccordionItem>
-              ))}
-          </Accordion>
-        </div>
-      ) : null}
+                </AccordionBody>
+              </AccordionItem>
+            ))}
+        </Accordion>
+      </div>
     </>
   );
 }

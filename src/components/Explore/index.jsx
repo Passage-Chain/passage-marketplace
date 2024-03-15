@@ -264,15 +264,8 @@ const Explore = (props) => {
         </div>
 
         <div className="ex-subheader">
-          <img
-            src={ExpandFilterIcon}
-            className="expand-icon"
-            alt="expand icon"
-            onClick={toggleSider}
-          />
-
+          {renderSearchInput()}
           <div className="subheader-right">
-            {renderSearchInput()}
             {renderSortOptions()}
             <div
               className="grid-icon-wrapper"
