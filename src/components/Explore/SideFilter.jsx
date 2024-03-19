@@ -10,6 +10,7 @@ import axios from "axios";
 import contractConfig from "../../configs/contract";
 import { collections } from "../../configs/collections";
 import "./index.scss";
+import { useSearchParams } from "react-router-dom";
 
 function titleize(str) {
   return str.replace(/\w\S*/g, (txt) => {
@@ -21,6 +22,7 @@ function SideFilter(props) {
   const [attributes, setAttributes] = useState([]);
   const [collection, setCollection] = useState("");
   const [selectedFilters, setSelectedFilters] = useState({});
+  const [, setSearchParams] = useSearchParams();
 
   //For Accordian
   const [open, setOpen] = useState("collections");
@@ -57,6 +59,13 @@ function SideFilter(props) {
     if (Object.keys(selectedFilters).length > 0) {
       const payload = preparePayload();
       props.setPayload(payload);
+      const searchParamsObject = {};
+      for (const [key, value] of Object.entries(payload)) {
+        searchParamsObject[key] =
+          typeof value === "object" ? JSON.stringify(value) : value;
+      }
+
+      setSearchParams(searchParamsObject);
     }
   }, [selectedFilters]);
 

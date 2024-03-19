@@ -14,13 +14,12 @@ import useDebounce from "../../hooks/useDebounce";
 import useWalletAddress from "../../hooks/useWalletAddress";
 import { CustomSearchInput } from "../custom";
 
-import ExpandFilterIcon from "../../assets/images-v2/expand-filter.svg";
 import SmallGridIcon from "../../assets/images-v2/small-grid.svg";
 import LargeGridIcon from "../../assets/images-v2/large-grid.svg";
 import SearchIcon from "../../assets/images-v2/search.svg";
 import "./index.scss";
 import Toast from "../custom/CustomToast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const SORT_OPTION = {
   PRICE: "price",
@@ -50,6 +49,7 @@ const Explore = (props) => {
   const [nftList, setNftList] = useState([]);
   const [sortOption] = useState(SORT_OPTION.PRICE);
   const [sortOrder, setSortOrder] = useState(SORT_MODE.ASC);
+  const [searchParams] = useSearchParams();
 
   const [hasMore, setHasMore] = useState(false);
   const [page, setPage] = useState(0);
@@ -116,8 +116,10 @@ const Explore = (props) => {
       }
 
       // Default to Kira on first load
+      const nftList = searchParams.get("collectionBase");
       const baseContract =
         payload.collectionBase ||
+        nftList ||
         collectionForCollectionName("Strange Clan: Kira").contracts.base;
       const response = await axios.get(
         `${contractConfig.NFT_API}/nfts/${baseContract}`,
