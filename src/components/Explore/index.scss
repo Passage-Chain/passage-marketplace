@@ -59,24 +59,11 @@
     align-items: center;
     margin-top: 25px;
 
-    .expand-icon {
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-    }
-
     .subheader-right {
       display: flex;
       align-items: center;
       gap: 10px;
 
-      .search-input {
-        background: none !important;
-        border-radius: 100px;
-        height: 40px !important;
-        padding: 0px !important;
-        width: 360px !important;
-      }
       .search-input input {
         background: none;
         width: 85%;
