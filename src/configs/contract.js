@@ -12,12 +12,12 @@ const contractConfig = {
   //IPFS_ROOT: "https://cloudflare-ipfs.com/ipfs/",
 
   // TODO: TEMPORARILY DISABLING DUE TO IP WHITELIST
-  // IPFS_ROOT: "https://pass2.mypinata.cloud/ipfs/",
-  IPFS_ROOT: "https://cloudflare-ipfs.com/ipfs/",
+  IPFS_ROOT: "https://pass2.mypinata.cloud/ipfs/",
+  // IPFS_ROOT: "https://cloudflare-ipfs.com/ipfs/",
   //IPFS_ROOT: "https://dweb.link/ipfs/",
   KEPLR_JUNO_WALLET: `https://lcd-juno.keplr.app/cosmos/bank/v1beta1`,
   //NFT_API: "http://localhost:3002/nfts/api/v1",
-  NFT_API: "https://pc-portal.dev.passage3d.co/nfts/api/v1",
+  NFT_API: "https://nft-api.app.passage.io/v2",
   MINTSCAN_BASE_URL: "https://www.mintscan.io/juno/txs/",
 };
 
