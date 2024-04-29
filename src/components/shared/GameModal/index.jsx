@@ -21,7 +21,7 @@ const GameModal = ({
       <Modal
         className="list-modal"
         title={title}
-        visible={visible}
+        open={visible}
         footer={false}
         onCancel={() => handleClick(onCancel)}
         onOk={() => handleClick(onConfirm)}
