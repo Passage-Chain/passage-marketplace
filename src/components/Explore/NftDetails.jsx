@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import useContract from "../../services/contract";
+import axios from "axios";
+import contractConfig from "../../configs/contract";
 import useWalletAddress from "../../hooks/useWalletAddress";
 import ConfirmationModal from "./ConfirmationModal";
 import NftActionModal from "./NftActionModal";
@@ -74,7 +76,16 @@ const NftDetails = () => {
   };*/
 
   const getTokenData = async () => {
-    const service = await contract;
+    try {
+      const response = await axios.get(
+        `${contractConfig.NFT_API}/nfts/${baseContract}/${id}`
+      );
+      setOwner(response.data.data.nft.owner);
+      setToken(response.data.data.nft);
+    } catch (err) {
+      console.log("err", err);
+    }
+
     let c = collectionForBaseContract(baseContract);
 
     setCollection(c);
@@ -83,26 +94,23 @@ const NftDetails = () => {
     // while newer NFT collections use integers, hence the following, ugly, code.
     const _id = c.offchainAssets ? id : parseInt(id).toString();
 
-    try {
-      const tokenData = await service.getTokenData(_id, baseContract);
-      const _token = normalizeToken(tokenData, id, baseContract);
-      setToken(_token);
-      setOwner(_token.owner);
-      //setToken(tokenData);
-    } catch (err) {
-      console.log(err);
-    }
-
-    const marketData = await service.getToken(_id, marketContract);
-    if (marketData.ask) {
-      setMarketData(marketData);
-      if (marketData.ask.seller) {
-        setOwner(marketData.ask.seller);
+    if (wallet) {
+      try {
+        const service = await contract;
+        const marketData = await service.getToken(_id, marketContract);
+        if (marketData.ask) {
+          setMarketData(marketData);
+          if (marketData.ask.seller) {
+            setOwner(marketData.ask.seller);
+          }
+          setPrice(marketData?.ask?.price?.amount / 1000000);
+        } else {
+          //reset market data
+          //setMarketData(undefined);
+        }
+      } catch (err) {
+        console.log("err", err);
       }
-      setPrice(marketData?.ask?.price?.amount / 1000000);
-    } else {
-      //reset market data
-      //setMarketData(undefined);
     }
   };
 
@@ -216,7 +224,7 @@ const NftDetails = () => {
                     color: "rgb(196, 196, 196)",
                   }}
                 >
-                  #{token?.id}
+                  #{token?.token_id}
                 </div>
               </div>
               <div className="owned-by-text" style={{ marginBottom: "32px" }}>
@@ -233,17 +241,23 @@ const NftDetails = () => {
                   >
                     {/* {auctionTimelineText} */} here
                   </div>
-                  {onSale ? (
-                    <>
-                      <div className="current-price-text">CURRENT PRICE</div>
-                      <div className="price">
-                        {currentPriceText}
-                        <span className="atom"> PASG</span>
+                  {wallet.address ? (
+                    onSale ? (
+                      <>
+                        <div className="current-price-text">CURRENT PRICE</div>
+                        <div className="price">
+                          {currentPriceText}
+                          <span className="atom"> PASG</span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="item-2">
+                        This item is not currently for sale
                       </div>
-                    </>
+                    )
                   ) : (
                     <div className="item-2">
-                      This item is not currently for sale
+                      Connect your wallet to view item availability.
                     </div>
                   )}
                   {isOwner ? (
