@@ -191,7 +191,7 @@ const Explore = (props) => {
         observer.current.disconnect();
       }
     };
-  }, [hasMore]);
+  }, [hasMore, page]);
 
   const handleSearch = (str) => {
     if (str) {
