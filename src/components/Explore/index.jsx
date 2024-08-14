@@ -28,8 +28,8 @@ const SORT_OPTION = {
 };
 
 const SORT_MODE = {
-  ASC: "asc",
-  DESC: "desc",
+  ASC: "priceAsc",
+  DESC: "priceDesc",
 };
 
 const sortOptions = [
@@ -50,7 +50,7 @@ const Explore = (props) => {
   const [sortOption] = useState(SORT_OPTION.PRICE);
   const [sortOrder, setSortOrder] = useState(SORT_MODE.ASC);
   const [searchParams] = useSearchParams();
-
+  const [contract, setContract] = useState("");
   const [hasMore, setHasMore] = useState(false);
   const [page, setPage] = useState(0);
   const [searchString, setSearchString] = useState("");
@@ -104,10 +104,11 @@ const Explore = (props) => {
   const fetchNftList = async (shouldReinitialize = false) => {
     try {
       const newPayload = {
-        sortBy: sortOption,
-        sortOrder: sortOrder,
-        search: debouncedSearchText,
-        page: shouldReinitialize ? 0 : page,
+        // sortBy: sortOption,
+        forSale: true,
+        sort: sortOrder,
+        // search: debouncedSearchText,
+        // page: shouldReinitialize ? 0 : page,
         ...payload,
       };
 
@@ -121,40 +122,26 @@ const Explore = (props) => {
         payload.collectionBase ||
         nftList ||
         collectionForCollectionName("Strange Clan: Kira").contracts.base;
+      setContract(baseContract);
+
       const response = await axios.get(
-        `${contractConfig.NFT_API}/nfts/${baseContract}`,
-        { params: { ...newPayload } }
+        `/api/collections/${baseContract}/nfts`,
+        {
+          params: { ...newPayload },
+        }
       );
-
-      const tokens = response.data.data;
-      //const tokens = response.data?.nftsWithFilteredDetails;
-
-      // TODO: adjust this value
-      if (tokens.length === 80) {
-        setPage((prev) => prev + 1);
-        setHasMore(true);
-      } else {
-        setHasMore(false);
-      }
-      // If there an no more tokens and we're not reinitializing, return
-      // if (!tokens || tokens.length <= 0) {
-      //   setHasMore(false);
-      //   if (!shouldReinitialize) {
-      //     return;
-      //   }
+      const tokens = response.data.nfts;
+      const pagination = response.data.pagination;
+      //   {
+      //     "total": 4917
       // }
 
-      if (!shouldReinitialize) {
-        setNftList((prev) => [...prev, ...tokens]);
-      } else {
-        setNftList(tokens);
-      }
+      setNftList(tokens);
+
+      // TODO: adjust this value
     } catch (error) {
       Toast.error("error", error.response.data.message);
 
-      if (error.response.status === 401) {
-        navigate("/");
-      }
       setNftList([]);
     }
   };
@@ -307,14 +294,15 @@ const Explore = (props) => {
                       cursor: "pointer",
                     }}
                   >
+                    {console.log(contractsByBase[contract]?.contracts.market)}
                     <NftCard
                       cached={true}
-                      key={nft.id}
+                      key={nft.tokenId}
                       data={nft}
-                      tokenId={nft.id}
-                      baseContract={nft.contract}
+                      tokenId={nft.tokenId}
+                      baseContract={contract}
                       marketContract={
-                        contractsByBase[nft.contract]?.contracts.market
+                        contractsByBase[contract]?.contracts.market
                       }
                     />
                   </div>
