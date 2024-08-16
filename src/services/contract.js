@@ -221,7 +221,7 @@ const useContract = async (
     };
 
     const result = await client.execute(
-      wallet,
+      walletAddress,
       mintingContract,
       txMsg,
       fee,
