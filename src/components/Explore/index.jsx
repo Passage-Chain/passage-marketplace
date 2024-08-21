@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { CustomSelect } from "../custom";
 import NftCard from "./NftCard";
@@ -51,14 +51,13 @@ const Explore = (props) => {
   const [sortOrder, setSortOrder] = useState(SORT_MODE.ASC);
   const [searchParams] = useSearchParams();
   const [contract, setContract] = useState("");
-  const [hasMore, setHasMore] = useState(false);
-  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [skip, setSkip] = useState(0);
   const [searchString, setSearchString] = useState("");
-  const [setSelectedCollection] = useState("");
+  const [selectedCollection, setSelectedCollection] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  // loggedInAddress since it condiitonally renders if user is logged in
   const { address: loggedInAddress } = useWalletAddress();
-
   const address = loggedInAddress;
 
   const [showFilterSider, setShowFilterSider] = useState(false);
@@ -70,17 +69,12 @@ const Explore = (props) => {
 
   const contractsByBase = contractsByBaseContract();
 
-  // TODO: Clean up wallet stuff
-  // const activeWallet = address || wallet;
-
   useEffect(() => {
-    fetchNftList(true, 1);
+    fetchNftList(true);
   }, [sortOrder, sortOption, payload, debouncedSearchText]);
 
   useEffect(() => {
     setNftList([]);
-    // setPage(1);
-    // setHasMore(true);
     const str = [filters, search, sort]
       .filter((s) => s)
       .reduce((s, r) => s + r, "");
@@ -102,25 +96,25 @@ const Explore = (props) => {
   };
 
   const fetchNftList = async (shouldReinitialize = false) => {
+    if (isLoading) return;
+
     try {
+      setIsLoading(true);
       const newPayload = {
-        // sortBy: sortOption,
         forSale: true,
         sort: sortOrder,
-        // search: debouncedSearchText,
-        // page: shouldReinitialize ? 0 : page,
+        skip: shouldReinitialize ? 0 : skip,
         ...payload,
       };
 
-      if (shouldReinitialize || Object.keys(payload).length === 1) {
-        setPage(0);
+      if (shouldReinitialize) {
+        setSkip(0);
+        setNftList([]);
       }
 
-      // Default to Kira on first load
-      const nftList = searchParams.get("collectionBase");
       const baseContract =
         payload.collectionBase ||
-        nftList ||
+        searchParams.get("collectionBase") ||
         collectionForCollectionName("Strange Clan: Kira").contracts.base;
       setContract(baseContract);
 
@@ -131,18 +125,18 @@ const Explore = (props) => {
         }
       );
       const tokens = response.data.nfts;
-      const pagination = response.data.pagination;
-      //   {
-      //     "total": 4917
-      // }
 
-      setNftList(tokens);
-
-      // TODO: adjust this value
+      setNftList((prev) =>
+        shouldReinitialize ? tokens : [...prev, ...tokens]
+      );
+      setHasMore(tokens.length > 0);
+      setSkip((prev) => prev + tokens.length);
     } catch (error) {
       Toast.error("error", error.response.data.message);
-
       setNftList([]);
+      setHasMore(false);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -153,23 +147,23 @@ const Explore = (props) => {
   const resetFilter = () => {
     setPayload({});
   };
+
   const observer = useRef(null);
 
   useEffect(() => {
     if (hasMore && !myCollection) {
       observer.current = new IntersectionObserver(
         (entries) => {
-          if (entries[0].isIntersecting) {
+          if (entries[0].isIntersecting && !isLoading) {
             fetchNftList();
           }
         },
-        { threshold: 1 }
+        { threshold: 0.5 }
       );
 
-      if (observer.current) {
-        observer.current.observe(
-          document.querySelector(".infinity-explore-scroll")
-        );
+      const target = document.querySelector(".infinity-explore-scroll");
+      if (target && observer.current) {
+        observer.current.observe(target);
       }
     }
 
@@ -178,7 +172,7 @@ const Explore = (props) => {
         observer.current.disconnect();
       }
     };
-  }, [hasMore, page]);
+  }, [hasMore, isLoading, myCollection]);
 
   const handleSearch = (str) => {
     if (str) {
@@ -287,17 +281,15 @@ const Explore = (props) => {
               ) : (
                 nftList.map((nft, index) => (
                   <div
-                    key={index}
+                    key={`${nft.tokenId}-${index}`}
                     style={{
                       flex: GRID_OPTIONS.SMALL === gridView ? "18%" : "23%",
                       maxWidth: calculateMinMaxWidth(),
                       cursor: "pointer",
                     }}
                   >
-                    {console.log(contractsByBase[contract]?.contracts.market)}
                     <NftCard
                       cached={true}
-                      key={nft.tokenId}
                       data={nft}
                       tokenId={nft.tokenId}
                       baseContract={contract}
@@ -308,12 +300,15 @@ const Explore = (props) => {
                   </div>
                 ))
               )}
-              {!myCollection && nftList?.length === 0 && (
+              {!myCollection && nftList.length === 0 && (
                 <p style={{ color: "#fff", fontSize: 18 }}>No results</p>
               )}
             </div>
             {hasMore && !myCollection && (
               <div className="infinity-explore-scroll" />
+            )}
+            {isLoading && (
+              <p style={{ color: "#fff", fontSize: 18 }}>Loading...</p>
             )}
           </div>
         </div>

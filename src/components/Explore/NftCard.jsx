@@ -50,11 +50,17 @@ const NftCard = (props) => {
     return price;
   };
 
+  const padTokenId = (tokenId) => {
+    return tokenId.toString().padStart(5, "0");
+  };
+
   return (
     <div
       className="nft-card-container"
       onClick={(e) => {
-        navigate(`/marketplace/${props.baseContract}/${data.tokenId}`);
+        const paddedTokenId = padTokenId(data.tokenId);
+
+        navigate(`/marketplace/${props.baseContract}/${paddedTokenId}`);
       }}
     >
       {collection && (
