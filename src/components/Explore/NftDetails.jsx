@@ -34,11 +34,13 @@ const NftDetails = () => {
   const navigate = useNavigate();
   const contract = useContract("cosmwasm-stargate");
   const [collection, setCollection] = useState();
+  const [image, setImage] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [action, setAction] = useState(null);
   const [token, setToken] = useState(null);
   const [isListOpen, setIsListOpen] = useState(false);
   const [isConfirmationOpen, setisConfirmationOpen] = useState(false);
+  const [attributes, setAttributes] = useState([]);
   const [open, setOpen] = useState("");
   const [marketData, setMarketData] = useState(null);
   const [owner, setOwner] = useState("");
@@ -64,24 +66,18 @@ const NftDetails = () => {
     }
   };
 
-  /*const inputStyle = {
-    background: "#101010 0% 0% no-repeat padding-box",
-    border: "2px solid #7CB5F924",
-    borderRadius: "10px",
-    font: "normal normal 300 18px/21px niveau-grotesk",
-    color: "#C4C4C4",
-    padding: "8px ",
-    height: 45,
-    minWidth: 130,
-  };*/
-
   const getTokenData = async () => {
     try {
       const response = await axios.get(
-        `${contractConfig.NFT_API}/nfts/${baseContract}/${id}`
+        `/api/collections/${baseContract}/nfts/${id}`
       );
-      setOwner(response.data.data.nft.owner);
-      setToken(response.data.data.nft);
+
+      const token = response.data;
+
+      setAttributes(token.metadata.attributes);
+      setOwner(token.owner);
+      setImage(token.metadata.image);
+      setToken(token);
     } catch (err) {
       console.log("err", err);
     }
@@ -104,9 +100,6 @@ const NftDetails = () => {
             setOwner(marketData.ask.seller);
           }
           setPrice(marketData?.ask?.price?.amount / 1000000);
-        } else {
-          //reset market data
-          //setMarketData(undefined);
         }
       } catch (err) {
         console.log("err", err);
@@ -167,7 +160,7 @@ const NftDetails = () => {
           <div className="col-12 col-md-5">
             <img
               style={loaded ? { width: "100%" } : { opacity: 0 }}
-              src={token && imageHttpUrl(token.image)}
+              src={image && imageHttpUrl(image)}
               className="img-fluid rounded nft-image"
               {...(collection?.offchainAssets
                 ? {}
@@ -183,7 +176,7 @@ const NftDetails = () => {
                     <AccordionBody accordionId="1">
                       <Table responsive style={{ ...classes.table }}>
                         <tbody>
-                          {token?.attributes.map((t, index) => (
+                          {attributes?.map((t, index) => (
                             <tr key={index}>
                               <td colSpan="4" className="left-prop">
                                 {t.trait_type}
@@ -224,7 +217,7 @@ const NftDetails = () => {
                     color: "rgb(196, 196, 196)",
                   }}
                 >
-                  #{token?.token_id}
+                  #{token?.tokenId}
                 </div>
               </div>
               <div className="owned-by-text" style={{ marginBottom: "32px" }}>
