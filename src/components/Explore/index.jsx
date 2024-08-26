@@ -279,7 +279,7 @@ const Explore = (props) => {
               {myCollection ? (
                 <UserCollection gridView={gridView} address={address} />
               ) : (
-                nftList.map((nft, index) => (
+                nftList?.map((nft, index) => (
                   <div
                     key={`${nft.tokenId}-${index}`}
                     style={{
