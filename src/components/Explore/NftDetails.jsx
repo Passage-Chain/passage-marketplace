@@ -16,7 +16,6 @@ import {
   collectionForBaseContract,
   marketContractForBase,
 } from "../../configs/collections";
-import { normalizeToken } from "../../utils/nftHelpers";
 import { useEffect, useState } from "react";
 import { imageHttpUrl } from "./NftCard";
 import Toast from "../custom/CustomToast";
@@ -159,13 +158,11 @@ const NftDetails = () => {
         <div className="row mt-4 ">
           <div className="col-12 col-md-5">
             <img
-              style={loaded ? { width: "100%" } : { opacity: 0 }}
-              src={image && imageHttpUrl(image)}
+              style={loaded ? { width: "100%" } : { display: "none" }}
+              src={image ? imageHttpUrl(image) : ""}
               className="img-fluid rounded nft-image"
-              {...(collection?.offchainAssets
-                ? {}
-                : { crossOrigin: "anonymous" })}
-              alt="Character"
+              crossOrigin={collection?.offchainAssets ? undefined : "anonymous"}
+              alt={token?.name || "Character"}
               onLoad={() => setLoaded(true)}
             />
             {
@@ -346,7 +343,7 @@ const NftDetails = () => {
           baseContract={baseContract}
           marketContract={marketContract}
           transferTokens={transferTokens}
-          image={token && imageHttpUrl(token.image)}
+          image={image ? imageHttpUrl(image) : undefined}
           setPrice={setPrice}
           nftTitle={token && token.name}
           isOnSale={isOnSale}
