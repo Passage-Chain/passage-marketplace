@@ -88,8 +88,8 @@ const UserCollection = ({ gridView, address }) => {
   return (
     <>
       {tokens.map((nft, index) => {
-        const baseContract = collectionForCollectionName(nft.metadata.name)
-          .contracts.base;
+        const collection = collectionForCollectionName(nft.metadata?.name);
+        const baseContract = collection?.contracts?.base || "";
         return (
           <div
             style={{
@@ -104,7 +104,9 @@ const UserCollection = ({ gridView, address }) => {
               data={nft}
               tokenId={nft.tokenId}
               baseContract={baseContract}
-              marketContract={contractsByBase[baseContract]?.contracts.market}
+              marketContract={
+                contractsByBase[baseContract]?.contracts?.market || ""
+              }
             />
           </div>
         );
