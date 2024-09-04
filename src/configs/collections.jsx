@@ -227,7 +227,9 @@ const collectionForBaseContract = (contract) => {
 };
 
 const collectionForCollectionName = (name) => {
-  return collections.find((c) => c.label == name);
+  return collections.find((c) =>
+    name.toLowerCase().includes(c.label.toLowerCase())
+  );
 };
 
 const contractsByCollectionName = (name) => {
