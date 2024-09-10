@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import NftCard from "./NftCard";
 import axios from "axios";
-import contractConfig from "../../configs/contract";
-import {
-  contractsByBaseContract,
-  collectionForCollectionName,
-} from "../../configs/collections";
+import { contractsByBaseContract } from "../../configs/collections";
 
 const GRID_OPTIONS = {
   LARGE: "LARGE",
@@ -88,8 +84,7 @@ const UserCollection = ({ gridView, address }) => {
   return (
     <>
       {tokens.map((nft, index) => {
-        const collection = collectionForCollectionName(nft.metadata?.name);
-        const baseContract = collection?.contracts?.base || "";
+        const baseContract = nft.collection?.address || "";
         return (
           <div
             style={{
