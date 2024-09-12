@@ -18,7 +18,7 @@ const collections = [
     },
     mintable: false,
     avatar: true,
-    mint: {}
+    mint: {},
   },
   {
     id: "Alchemist",
@@ -40,7 +40,7 @@ const collections = [
       percentMinted: 0,
       royalties: 0.06,
       previewUrl: AlchemistPromo,
-    }
+    },
   },
   {
     id: "samuari",
@@ -62,7 +62,7 @@ const collections = [
       percentMinted: 0,
       royalties: 0.03,
       previewUrl: SamuraiPromo,
-    }
+    },
   },
   {
     id: "princess",
@@ -84,7 +84,7 @@ const collections = [
       percentMinted: 0,
       royalties: 0.03,
       previewUrl: PrincessPromo,
-    }
+    },
   },
   {
     id: "hacker",
@@ -106,7 +106,7 @@ const collections = [
       percentMinted: 0,
       royalties: 0.03,
       previewUrl: HackerPromo,
-    }
+    },
   },
   {
     id: "fantasy",
@@ -128,7 +128,7 @@ const collections = [
       percentMinted: 0,
       royalties: 0.03,
       previewUrl: FantasyPromo,
-    }
+    },
   },
   {
     id: "scifi",
@@ -150,7 +150,7 @@ const collections = [
       percentMinted: 0,
       royalties: 0.03,
       previewUrl: SciFiPromo,
-    }
+    },
   },
   {
     id: "sc-t1",
@@ -160,7 +160,7 @@ const collections = [
       base: "pasg1a2366fuydkz20h9q9kaxg5vqwpu8prgs6mhwn5qha3wsups0trcq5gl8d2",
       market: "pasg1qrwaatac4xvf4qnnagvsc93gcnv2x2t7mm575v3drzh2wcap9hasvjr3hr",
     },
-    mintable: false
+    mintable: false,
   },
   {
     id: "sc-t2",
@@ -181,7 +181,7 @@ const collections = [
       percentMinted: 38.85,
       royalties: 0.06,
       previewUrl: SCT2Preview,
-    }
+    },
   },
   {
     id: "sc-eggs",
@@ -210,37 +210,40 @@ const collections = [
       percentMinted: 0,
       royalties: 0.1,
       previewUrl: MHPreview,
-    }
+    },
   },
 ];
 
 const mintableCollections = () => {
-  return collections.filter(c => c.mintable);
-}
+  return collections.filter((c) => c.mintable);
+};
 
 const collectionForMintContract = (contract) => {
-  return collections.find(c => c.mintable && c.contracts.mint === contract);
-}
+  return collections.find((c) => c.mintable && c.contracts.mint === contract);
+};
 
 const collectionForBaseContract = (contract) => {
-  return collections.find(c => c.contracts.base === contract);
-}
+  return collections.find((c) => c.contracts.base === contract);
+};
 
 const collectionForCollectionName = (name) => {
-  return collections.find(c => c.label === name);
-}
+  return collections.find((c) =>
+    name.toLowerCase().includes(c.label.toLowerCase())
+  );
+};
 
 const contractsByCollectionName = (name) => {
-  return Object.fromEntries(collections.map(c => [c.label, c.contracts]));
-}
+  return Object.fromEntries(collections.map((c) => [c.label, c.contracts]));
+};
 
 const contractsByBaseContract = () => {
-  return Object.fromEntries(collections.map(c => [c.contracts.base, c]));
-}
+  return Object.fromEntries(collections.map((c) => [c.contracts.base, c]));
+};
 
 const marketContractForBase = (baseContract) => {
-  return collections.find(c => c.contracts.base === baseContract).contracts.market;
-}
+  return collections.find((c) => c.contracts.base === baseContract).contracts
+    .market;
+};
 
 export {
   collections,

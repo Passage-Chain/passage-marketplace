@@ -44,24 +44,30 @@ const NftCard = (props) => {
   };
 
   const formattedPrice = (tData) => {
-    if (!tData?.price || tData.price === "0") return "-";
+    if (!tData?.listedPrice || tData.price === "0") return "-";
     let price = "-";
-    if (tData.price) price = `${tData.price / 1000000}`;
+    if (tData.listedPrice) price = `${tData.listedPrice / 1000000}`;
     return price;
+  };
+
+  const padTokenId = (tokenId) => {
+    return tokenId.toString().padStart(5, "0");
   };
 
   return (
     <div
       className="nft-card-container"
       onClick={(e) => {
-        navigate(`/marketplace/${props.baseContract}/${data.token_id}`);
+        const paddedTokenId = padTokenId(data.tokenId);
+
+        navigate(`/marketplace/${props.baseContract}/${paddedTokenId}`);
       }}
     >
       {collection && (
         /* Note: Town 1 NFTs with S3 assets must not have crossOrigin: 'anonymous' */
         <img
           style={loaded ? {} : { opacity: 0 }}
-          src={data?.image && imageHttpUrl(data.image)}
+          src={data?.metadata?.image && imageHttpUrl(data?.metadata?.image)}
           className="nft-image"
           alt="Character"
           {...(collection?.offchainAssets ? {} : { crossOrigin: "anonymous" })}
@@ -87,11 +93,11 @@ const NftCard = (props) => {
           gap: 4,
         }}
       >
-        <span className="nft-name">{data?.name}</span>
+        <span className="nft-name">{data?.metadata.name}</span>
         <span className="clan-name">{collection?.label}</span>
         <div className="nft-info-wrapper">
           <span className="price-txt">{formattedPrice(data)} PASG</span>
-          <span className="nft-id">#{data?.token_id}</span>
+          <span className="nft-id">#{data?.tokenId}</span>
         </div>
       </div>
     </div>

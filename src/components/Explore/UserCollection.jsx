@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import NftCard from "./NftCard";
 import axios from "axios";
-import contractConfig from "../../configs/contract";
 import { contractsByBaseContract } from "../../configs/collections";
 
 const GRID_OPTIONS = {
@@ -11,8 +10,9 @@ const GRID_OPTIONS = {
 
 const UserCollection = ({ gridView, address }) => {
   const [tokens, setTokens] = useState([]);
-  const [hasMore, setHasMore] = useState(false);
-  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [skip, setSkip] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const contractsByBase = contractsByBaseContract();
 
   const calculateMinMaxWidth = () => {
@@ -22,46 +22,46 @@ const UserCollection = ({ gridView, address }) => {
     } else if (GRID_OPTIONS.SMALL === gridView) {
       width = 338.48;
     }
-
     return width;
   };
 
   const loadTokens = async () => {
+    if (isLoading) return;
+
     try {
-      const response = await axios.get(
-        `${contractConfig.NFT_API}/wallet/${address}`,
-        { params: { page } }
-      );
-      const tokens = response.data.data;
-      if (tokens.length === 80) {
-        setPage((prev) => prev + 1);
-        setHasMore(true);
-      } else {
-        setHasMore(false);
-      }
-      setTokens((prev) => [...prev, ...tokens]);
+      setIsLoading(true);
+      const response = await axios.get(`/api/accounts/${address}/nfts`, {
+        params: { skip },
+      });
+      const newTokens = response.data.nfts;
+
+      setTokens((prev) => [...prev, ...newTokens]);
+      setHasMore(newTokens.length > 0);
+      setSkip((prev) => prev + newTokens.length);
     } catch (err) {
       console.log("err", err);
+      setHasMore(false);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const observer = useRef(null);
 
   useEffect(() => {
-    if (hasMore) {
+    if (hasMore && !isLoading) {
       observer.current = new IntersectionObserver(
         (entries) => {
           if (entries[0].isIntersecting) {
             loadTokens();
           }
         },
-        { threshold: 1 }
+        { threshold: 0.5 }
       );
 
-      if (observer.current) {
-        observer.current.observe(
-          document.querySelector(".infinite-scroll-trigger")
-        );
+      const target = document.querySelector(".infinite-scroll-trigger");
+      if (target && observer.current) {
+        observer.current.observe(target);
       }
     }
 
@@ -70,51 +70,44 @@ const UserCollection = ({ gridView, address }) => {
         observer.current.disconnect();
       }
     };
-  }, [hasMore]);
+  }, [hasMore, isLoading]);
 
   useEffect(() => {
     if (address) {
+      setTokens([]);
+      setSkip(0);
+      setHasMore(true);
       loadTokens();
     }
   }, [address]);
 
   return (
     <>
-      {tokens.map((nft) => (
-        <div
-          style={{
-            flex: GRID_OPTIONS.SMALL === gridView ? "18%" : "23%",
-            maxWidth: calculateMinMaxWidth(),
-            cursor: "pointer",
-          }}
-          key={nft.id}
-        >
-          <NftCard
-            cached={true}
-            key={nft.id}
-            data={nft}
-            tokenId={nft.id}
-            baseContract={nft.contract}
-            marketContract={contractsByBase[nft.contract]?.contracts.market}
-          />
-        </div>
-      ))}
-      {/* {hasMore && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
-          <div className="ex-load-more-wrapper" onClick={loadTokens}>
-            <span className="ex-load-more-label">Load more</span>
+      {tokens.map((nft, index) => {
+        const baseContract = nft.collection?.address || "";
+        return (
+          <div
+            style={{
+              flex: GRID_OPTIONS.SMALL === gridView ? "18%" : "23%",
+              maxWidth: calculateMinMaxWidth(),
+              cursor: "pointer",
+            }}
+            key={`${nft.id}-${index}`}
+          >
+            <NftCard
+              cached={true}
+              data={nft}
+              tokenId={nft.tokenId}
+              baseContract={baseContract}
+              marketContract={
+                contractsByBase[baseContract]?.contracts?.market || ""
+              }
+            />
           </div>
-        </div>
-      )} */}
-
+        );
+      })}
       {hasMore && <div className="infinite-scroll-trigger" />}
+      {isLoading && <p style={{ color: "#fff", fontSize: 18 }}>Loading...</p>}
     </>
   );
 };

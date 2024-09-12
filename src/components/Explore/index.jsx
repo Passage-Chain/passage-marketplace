@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { CustomSelect } from "../custom";
 import NftCard from "./NftCard";
@@ -28,8 +28,8 @@ const SORT_OPTION = {
 };
 
 const SORT_MODE = {
-  ASC: "asc",
-  DESC: "desc",
+  ASC: "priceAsc",
+  DESC: "priceDesc",
 };
 
 const sortOptions = [
@@ -50,15 +50,14 @@ const Explore = (props) => {
   const [sortOption] = useState(SORT_OPTION.PRICE);
   const [sortOrder, setSortOrder] = useState(SORT_MODE.ASC);
   const [searchParams] = useSearchParams();
-
-  const [hasMore, setHasMore] = useState(false);
-  const [page, setPage] = useState(0);
+  const [contract, setContract] = useState("");
+  const [hasMore, setHasMore] = useState(true);
+  const [skip, setSkip] = useState(0);
   const [searchString, setSearchString] = useState("");
-  const [setSelectedCollection] = useState("");
+  const [selectedCollection, setSelectedCollection] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  // loggedInAddress since it condiitonally renders if user is logged in
   const { address: loggedInAddress } = useWalletAddress();
-
   const address = loggedInAddress;
 
   const [showFilterSider, setShowFilterSider] = useState(false);
@@ -70,17 +69,12 @@ const Explore = (props) => {
 
   const contractsByBase = contractsByBaseContract();
 
-  // TODO: Clean up wallet stuff
-  // const activeWallet = address || wallet;
-
   useEffect(() => {
-    fetchNftList(true, 1);
+    fetchNftList(true);
   }, [sortOrder, sortOption, payload, debouncedSearchText]);
 
   useEffect(() => {
     setNftList([]);
-    // setPage(1);
-    // setHasMore(true);
     const str = [filters, search, sort]
       .filter((s) => s)
       .reduce((s, r) => s + r, "");
@@ -102,60 +96,47 @@ const Explore = (props) => {
   };
 
   const fetchNftList = async (shouldReinitialize = false) => {
+    if (isLoading) return;
+
     try {
+      setIsLoading(true);
       const newPayload = {
-        sortBy: sortOption,
-        sortOrder: sortOrder,
-        search: debouncedSearchText,
-        page: shouldReinitialize ? 0 : page,
+        forSale: true,
+        sort: sortOrder,
+        skip: shouldReinitialize ? 0 : skip,
         ...payload,
       };
 
-      if (shouldReinitialize || Object.keys(payload).length === 1) {
-        setPage(0);
+      if (shouldReinitialize) {
+        setSkip(0);
+        setNftList([]);
       }
 
-      // Default to Kira on first load
-      const nftList = searchParams.get("collectionBase");
       const baseContract =
         payload.collectionBase ||
-        nftList ||
+        searchParams.get("collectionBase") ||
         collectionForCollectionName("Strange Clan: Kira").contracts.base;
+      setContract(baseContract);
+
       const response = await axios.get(
-        `${contractConfig.NFT_API}/nfts/${baseContract}`,
-        { params: { ...newPayload } }
+        `/api/collections/${baseContract}/nfts`,
+        {
+          params: { ...newPayload },
+        }
       );
+      const tokens = response.data.nfts;
 
-      const tokens = response.data.data;
-      //const tokens = response.data?.nftsWithFilteredDetails;
-
-      // TODO: adjust this value
-      if (tokens.length === 80) {
-        setPage((prev) => prev + 1);
-        setHasMore(true);
-      } else {
-        setHasMore(false);
-      }
-      // If there an no more tokens and we're not reinitializing, return
-      // if (!tokens || tokens.length <= 0) {
-      //   setHasMore(false);
-      //   if (!shouldReinitialize) {
-      //     return;
-      //   }
-      // }
-
-      if (!shouldReinitialize) {
-        setNftList((prev) => [...prev, ...tokens]);
-      } else {
-        setNftList(tokens);
-      }
+      setNftList((prev) =>
+        shouldReinitialize ? tokens : [...prev, ...tokens]
+      );
+      setHasMore(tokens.length > 0);
+      setSkip((prev) => prev + tokens.length);
     } catch (error) {
       Toast.error("error", error.response.data.message);
-
-      if (error.response.status === 401) {
-        navigate("/");
-      }
       setNftList([]);
+      setHasMore(false);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -166,23 +147,23 @@ const Explore = (props) => {
   const resetFilter = () => {
     setPayload({});
   };
+
   const observer = useRef(null);
 
   useEffect(() => {
     if (hasMore && !myCollection) {
       observer.current = new IntersectionObserver(
         (entries) => {
-          if (entries[0].isIntersecting) {
+          if (entries[0].isIntersecting && !isLoading) {
             fetchNftList();
           }
         },
-        { threshold: 1 }
+        { threshold: 0.5 }
       );
 
-      if (observer.current) {
-        observer.current.observe(
-          document.querySelector(".infinity-explore-scroll")
-        );
+      const target = document.querySelector(".infinity-explore-scroll");
+      if (target && observer.current) {
+        observer.current.observe(target);
       }
     }
 
@@ -191,7 +172,7 @@ const Explore = (props) => {
         observer.current.disconnect();
       }
     };
-  }, [hasMore, page]);
+  }, [hasMore, isLoading, myCollection]);
 
   const handleSearch = (str) => {
     if (str) {
@@ -298,9 +279,9 @@ const Explore = (props) => {
               {myCollection ? (
                 <UserCollection gridView={gridView} address={address} />
               ) : (
-                nftList.map((nft, index) => (
+                nftList?.map((nft, index) => (
                   <div
-                    key={index}
+                    key={`${nft.tokenId}-${index}`}
                     style={{
                       flex: GRID_OPTIONS.SMALL === gridView ? "18%" : "23%",
                       maxWidth: calculateMinMaxWidth(),
@@ -309,23 +290,25 @@ const Explore = (props) => {
                   >
                     <NftCard
                       cached={true}
-                      key={nft.id}
                       data={nft}
-                      tokenId={nft.id}
-                      baseContract={nft.contract}
+                      tokenId={nft.tokenId}
+                      baseContract={contract}
                       marketContract={
-                        contractsByBase[nft.contract]?.contracts.market
+                        contractsByBase[contract]?.contracts.market
                       }
                     />
                   </div>
                 ))
               )}
-              {!myCollection && nftList?.length === 0 && (
+              {!myCollection && nftList.length === 0 && (
                 <p style={{ color: "#fff", fontSize: 18 }}>No results</p>
               )}
             </div>
             {hasMore && !myCollection && (
               <div className="infinity-explore-scroll" />
+            )}
+            {isLoading && (
+              <p style={{ color: "#fff", fontSize: 18 }}>Loading...</p>
             )}
           </div>
         </div>
