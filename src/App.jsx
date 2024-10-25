@@ -36,9 +36,8 @@ function App() {
   return (
     <div id="app" className="App">
       <Routes>
-        <Route exact path="/" element={<Login />} />
         <Route
-          path="/marketplace"
+          path="/"
           element={
             <GuardedRoute
               component={Explore}
