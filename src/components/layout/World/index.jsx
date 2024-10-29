@@ -48,17 +48,19 @@ const SideOptions = () => {
       "/my-worlds",
       "/mint",
     ];
-    if (!routes.includes(location?.pathname)) {
+    if (location?.pathname === "/") {
+      setActiveOption("marketplace");
+    } else if (!routes.includes(location?.pathname)) {
       setActiveOption("");
     }
   }, [location?.pathname]);
 
   const gotoExplore = () => {
-    navigate("/marketplace");
+    navigate("/");
   };
 
   const handleExploreClick = () => {
-    setActiveOption("marketplace");
+    setActiveOption("/");
     gotoExplore();
   };
 
