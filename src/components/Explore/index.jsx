@@ -86,7 +86,7 @@ const Explore = (props) => {
       navigate("/marketplace/my-collection");
       setMyCollection(true);
     } else {
-      navigate("/marketplace");
+      navigate("/");
       setMyCollection(false);
     }
   };
