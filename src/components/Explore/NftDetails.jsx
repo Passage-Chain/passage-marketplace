@@ -17,8 +17,8 @@ import {
   marketContractForBase,
 } from "../../configs/collections";
 import { useEffect, useState } from "react";
-import { imageHttpUrl } from "./NftCard";
 import Toast from "../custom/CustomToast";
+import { useNftImage } from "../../hooks/useNftImage";
 
 const classes = {
   table: {
@@ -33,8 +33,6 @@ const NftDetails = () => {
   const navigate = useNavigate();
   const contract = useContract("cosmwasm-stargate");
   const [collection, setCollection] = useState();
-  const [image, setImage] = useState("");
-  const [loaded, setLoaded] = useState(false);
   const [action, setAction] = useState(null);
   const [token, setToken] = useState(null);
   const [isListOpen, setIsListOpen] = useState(false);
@@ -75,7 +73,6 @@ const NftDetails = () => {
 
       setAttributes(token.metadata.attributes);
       setOwner(token.owner);
-      setImage(token.metadata.image);
       setToken(token);
     } catch (err) {
       console.log("err", err);
@@ -136,6 +133,12 @@ const NftDetails = () => {
     }
   }, [refreshTokenData]);
 
+  const { imageUrl, loaded, handleImageLoad } = useNftImage(
+    token,
+    baseContract,
+    "full"
+  );
+
   return !collection ? (
     <></>
   ) : (
@@ -159,11 +162,11 @@ const NftDetails = () => {
           <div className="col-12 col-md-5">
             <img
               style={loaded ? { width: "100%" } : { display: "none" }}
-              src={image ? imageHttpUrl(image) : ""}
+              src={imageUrl}
               className="img-fluid rounded nft-image"
               crossOrigin={collection?.offchainAssets ? undefined : "anonymous"}
               alt={token?.name || "Character"}
-              onLoad={() => setLoaded(true)}
+              onLoad={handleImageLoad}
             />
             {
               <div className="collections-metadata mt-4">
@@ -343,7 +346,7 @@ const NftDetails = () => {
           baseContract={baseContract}
           marketContract={marketContract}
           transferTokens={transferTokens}
-          image={image ? imageHttpUrl(image) : undefined}
+          image={imageUrl}
           setPrice={setPrice}
           nftTitle={token && token.name}
           isOnSale={isOnSale}

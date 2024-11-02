@@ -12,6 +12,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, "/v1"),
       },
+      "/s3": {
+        target: "https://passage.s3.us-east-2.amazonaws.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/s3/, ""),
+      },
     },
   },
 });
