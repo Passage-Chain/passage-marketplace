@@ -5,6 +5,10 @@
       "destination": "https://passage-api-demo.maxmaxlabs.com/v1/:path*"
     },
     {
+      "source": "/s3/:path*",
+      "destination": "https://passage.s3.us-east-2.amazonaws.com/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }
