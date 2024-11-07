@@ -118,7 +118,7 @@ function Mint() {
       <div className="explore-container">
         <div className="ex-header">
           <span className="ex-header-txt clickable">
-            <span onClick={() => navigate("/marketplace")}>Marketplace</span>
+            <span onClick={() => navigate("/")}>Marketplace</span>
             {" > "}
             <span onClick={() => navigate("/mint")}>Mints</span>
             {" > "}

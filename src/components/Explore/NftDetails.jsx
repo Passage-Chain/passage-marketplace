@@ -147,7 +147,7 @@ const NftDetails = () => {
         <div className="ex-header">
           <span
             className="ex-header-txt clickable"
-            onClick={() => navigate("/marketplace")}
+            onClick={() => navigate("/")}
           >
             Marketplace
           </span>
