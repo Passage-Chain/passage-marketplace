@@ -33,11 +33,16 @@ const UserCollection = ({ gridView, address }) => {
       const response = await axios.get(`/api/accounts/${address}/nfts`, {
         params: { skip },
       });
-      const newTokens = response.data.nfts;
+
+      const newTokens = response.data.nfts.filter(
+        (nft) =>
+          nft.collection?.address !==
+          "pasg14rse3e7rkc3qt7drmlulwlkrlzqvh7hv277zv05kyfuwl74udx5s5gxtz3"
+      );
 
       setTokens((prev) => [...prev, ...newTokens]);
       setHasMore(newTokens.length > 0);
-      setSkip((prev) => prev + newTokens.length);
+      setSkip((prev) => prev + response.data.nfts.length);
     } catch (err) {
       console.log("err", err);
       setHasMore(false);
