@@ -1,9 +1,6 @@
 const contractConfig = {
   PRICE_FEED_API: "https://api.coingecko.com/api/v3/simple/price",
-  //RPC: "https://juno-rpc.stakely.io",
-  //RPC: "http://143.244.137.73:26657",
-  RPC: "https://tendermint.passage.nodefleet.org/",
-  // RPC: "https://rpc.passage.io",
+  RPC: "https://rpc.app.passage.io/",
   chainId: "passage-2",
   DENOM: "pasg",
   //DENOM: "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
@@ -17,7 +14,6 @@ const contractConfig = {
   IPFS_ROOT: "https://ipfs.io/ipfs/",
   //IPFS_ROOT: "https://dweb.link/ipfs/",
   KEPLR_JUNO_WALLET: `https://lcd-juno.keplr.app/cosmos/bank/v1beta1`,
-  //NFT_API: "http://localhost:3002/nfts/api/v1",
   NFT_API: "https://nft-api.app.passage.io/v2",
   NFT_INDEXER: "https://passage-api-demo.maxmaxlabs.com/v1",
   MINTSCAN_BASE_URL: "https://www.mintscan.io/juno/txs/",
