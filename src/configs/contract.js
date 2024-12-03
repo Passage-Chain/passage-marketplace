@@ -2,7 +2,7 @@ const contractConfig = {
   PRICE_FEED_API: "https://api.coingecko.com/api/v3/simple/price",
   //RPC: "https://juno-rpc.stakely.io",
   //RPC: "http://143.244.137.73:26657",
-  RPC: "https://rpc.passage.vitwit.com/",
+  RPC: "https://tendermint.passage.nodefleet.org/",
   // RPC: "https://rpc.passage.io",
   chainId: "passage-2",
   DENOM: "pasg",
