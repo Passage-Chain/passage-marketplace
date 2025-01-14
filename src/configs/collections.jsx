@@ -175,7 +175,7 @@ const collections = [
       creator: "Strange Clan",
       description: "Kira",
       sale: Date.now(),
-      price: "5000000000",
+      price: "10000000000",
       totalCount: 5000,
       mintcount: 4900,
       percentMinted: 38.85,
