@@ -358,6 +358,10 @@ const useContract = async (
     }
   };
 
+  const getBalance = async (address, denom = "upasg") => {
+    return client.getBalance(address, denom);
+  };
+
   return {
     buyNFT,
     delistTokens,
@@ -374,6 +378,7 @@ const useContract = async (
     listTokens,
     transferNFT,
     updatePrice,
+    getBalance,
   };
 };
 

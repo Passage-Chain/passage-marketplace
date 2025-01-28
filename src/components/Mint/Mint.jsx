@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { collectionForMintContract } from "../../configs/collections";
 import useWalletAddress from "../../hooks/useWalletAddress";
+import useBalance from "../../hooks/useBalance";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import useContract from "../../services/contract";
 import Toast from "../custom/CustomToast";
+import { Spin } from "antd";
+
 import "./index.scss";
 
 const confirmButtonStyle = {
@@ -20,6 +23,7 @@ const confirmButtonStyle = {
 
 function Mint() {
   const { mintContract } = useParams();
+  const { balance, isLoading, refetch } = useBalance();
   const [collection, setCollection] = useState();
   const [config, setConfig] = useState({});
   const walletAddress = useWalletAddress();
@@ -111,6 +115,23 @@ function Mint() {
     setCollection(collection);
     getMintConfig(collection);
   }, [walletAddress, mintContract]);
+
+  const isButtonDisabled = () => {
+    return (
+      !walletAddress?.address ||
+      status === "Starting soon" ||
+      balance < (config?.unit_price?.amount / 1000000 || 0)
+    );
+  };
+
+  const getButtonText = () => {
+    if (isLoading) return <Spin size="small" />;
+    if (!walletAddress?.address) return "Connect Wallet";
+    if (status === "Starting soon") return "Minting Soon";
+    if (balance < (config?.unit_price?.amount / 1000000 || 0))
+      return "Insufficient Balance";
+    return "MINT";
+  };
 
   return (
     <>
@@ -220,9 +241,9 @@ function Mint() {
                     <button
                       style={confirmButtonStyle}
                       onClick={mintNFT}
-                      disabled={status === "Starting soon"}
+                      disabled={isButtonDisabled() || isLoading}
                     >
-                      {status === "Starting soon" ? "Minting Soon" : "MINT"}
+                      {getButtonText()}
                     </button>
                   </div>
                 </div>
