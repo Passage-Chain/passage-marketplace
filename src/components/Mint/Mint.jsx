@@ -136,7 +136,6 @@ function Mint() {
   return (
     <>
       {/* {isLoading && <Loader isOpen={isLoading} />} */}
-      {console.log(walletAddress)}
       <div className="explore-container">
         <div className="ex-header">
           <span className="ex-header-txt clickable">
