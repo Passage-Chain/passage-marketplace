@@ -82,7 +82,14 @@ const NftActionModal = ({
         if (txId) {
           Toast.success(
             "Item Transferred",
-            `Item was successfully transfered! ${txId}`
+            `Item was successfully transfered! ${txId}`,
+            {
+              handleClick: () =>
+                window.open(
+                  `${contractConfig.ZENSCAN_BASE_URL}${txId}`,
+                  "_blank"
+                ),
+            }
           );
         }
       } catch {}
@@ -105,7 +112,14 @@ const NftActionModal = ({
       if (txId) {
         Toast.success(
           "Item Purchased",
-          `Item was successfully purchased! ${txId}`
+          `Item was successfully purchased! ${txId}`,
+          {
+            handleClick: () =>
+              window.open(
+                `${contractConfig.ZENSCAN_BASE_URL}${txId}`,
+                "_blank"
+              ),
+          }
         );
       } else {
         Toast.error(
@@ -135,7 +149,14 @@ const NftActionModal = ({
         Toast.success(
           "Listing Succesfully Updated",
           // TODO: txId.transactionHash can be a URL to scanner tx
-          `Item was successfully updated! ${txId.transactionHash}`
+          `Item was successfully updated! ${txId.transactionHash}`,
+          {
+            handleClick: () =>
+              window.open(
+                `${contractConfig.ZENSCAN_BASE_URL}${txId.transactionHash}`,
+                "_blank"
+              ),
+          }
         );
       } else {
         txId = await service.listTokens(
@@ -147,7 +168,14 @@ const NftActionModal = ({
         Toast.success(
           "NFT Succesfully Listed",
           // TODO: txId.transactionHash can be a URL to scanner tx
-          `Item was successfully listed! ${txId.transactionHash}`
+          `Item was successfully listed! ${txId.transactionHash}`,
+          {
+            handleClick: () =>
+              window.open(
+                `${contractConfig.ZENSCAN_BASE_URL}${txId.transactionHash}`,
+                "_blank"
+              ),
+          }
         );
       }
     } catch {}

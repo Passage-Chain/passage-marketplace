@@ -1,6 +1,7 @@
 import { collectionForBaseContract } from "../../configs/collections";
 import Toast from "../custom/CustomToast";
 import { Modal } from "antd";
+import contractConfig from "../../configs/contract";
 
 const ConfirmationModal = ({
   visible,
@@ -19,8 +20,11 @@ const ConfirmationModal = ({
       const txId = await service.delistTokens(_id, marketContract);
       Toast.success(
         "NFT Succesfully Delisted",
-        // TODO: txId.transactionHash can be a URL to scanner tx
-        `Item was successfully delisted! ${txId}`
+        `Item was successfully delisted! ${txId}`,
+        {
+          handleClick: () =>
+            window.open(`${contractConfig.ZENSCAN_BASE_URL}${txId}`, "_blank"),
+        }
       );
     } catch (err) {
       Toast.contractError(err.message);

@@ -16,7 +16,8 @@ const contractConfig = {
   KEPLR_JUNO_WALLET: `https://lcd-juno.keplr.app/cosmos/bank/v1beta1`,
   NFT_API: "https://nft-api.app.passage.io/v2",
   NFT_INDEXER: "https://passage-api-demo.maxmaxlabs.com/v1",
-  MINTSCAN_BASE_URL: "https://www.mintscan.io/juno/txs/",
+  // MINTSCAN_BASE_URL: "https://www.mintscan.io/juno/txs/",
+  ZENSCAN_BASE_URL: "https://passage.zenscan.io/transaction.php?hash=",
 };
 
 export default contractConfig;
