@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "https://passage-api-demo.maxmaxlabs.com",
+        target: "https://indexer.passage-apis.com",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, "/v1"),
       },
