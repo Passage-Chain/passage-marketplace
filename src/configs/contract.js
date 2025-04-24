@@ -1,6 +1,6 @@
 const contractConfig = {
   PRICE_FEED_API: "https://api.coingecko.com/api/v3/simple/price",
-  RPC: "https://rpc.app.passage.io/",
+  RPC: "https://tendermint.passage.nodefleet.org/",
   chainId: "passage-2",
   DENOM: "pasg",
   //DENOM: "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
