@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { collectionForMintContract } from "../../configs/collections";
 import useWalletAddress from "../../hooks/useWalletAddress";
 import useBalance from "../../hooks/useBalance";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import useContract from "../../services/contract";
+import { useContractService } from "../../services/contract";
 import Toast from "../custom/CustomToast";
 import { Spin } from "antd";
 
@@ -27,7 +27,7 @@ function Mint() {
   const [collection, setCollection] = useState();
   const [config, setConfig] = useState({});
   const walletAddress = useWalletAddress();
-  const contract = useContract("cosmwasm-stargate");
+  const contractService = useContractService("cosmwasm-stargate");
   const navigate = useNavigate();
   const [status, setStatus] = useState("Starting soon");
 
@@ -36,85 +36,100 @@ function Mint() {
     const addr = walletAddress;
     const collection = collectionForMintContract(mintContract);
 
-    contract.then(({ mintNFT, getTokenData, getToken }) => {
-      mintNFT(addr, config.unit_price, collection.contracts.mint)
-        .then(async (res) => {
-          //const res = await contract.listTokens(token.id, String(data.price * 1000000))
-          const tokenId = res.logs[0]?.events
-            ?.find((e) => e.type === "wasm")
-            ?.attributes?.find((a) => a.key === "token_id")?.value;
+    contractService
+      .mintNFT(addr, config.unit_price, collection.contracts.mint)
+      .then(async (res) => {
+        //const res = await contract.listTokens(token.id, String(data.price * 1000000))
+        const tokenId = res.logs[0]?.events
+          ?.find((e) => e.type === "wasm")
+          ?.attributes?.find((a) => a.key === "token_id")?.value;
 
-          // TODO: not sure if this will be static of if it needs to be like ^
-          // const contractAddress = res.logs[0].events[2].attributes[1].value;
-          if (tokenId) {
-            Toast.success(
-              "NFT Succesfully Minted",
-              `Item was successfully minted! ${tokenId}`,
-              {
-                /*logo: <img src={StrangeClan} alt="Success" />,*/
-                handleClick: () =>
-                  navigate(
-                    `/marketplace/${collection.contracts.base}/${tokenId}`
-                  ),
-              }
-            );
-          }
-        })
-        .catch((err) => {
-          Toast.contractError(err.message);
-          console.log(err, err.message);
-        });
-    });
+        // TODO: not sure if this will be static of if it needs to be like ^
+        // const contractAddress = res.logs[0].events[2].attributes[1].value;
+        if (tokenId) {
+          Toast.success(
+            "NFT Succesfully Minted",
+            `Item was successfully minted! ${tokenId}`,
+            {
+              /*logo: <img src={StrangeClan} alt="Success" />,*/
+              handleClick: () =>
+                navigate(
+                  `/marketplace/${collection.contracts.base}/${tokenId}`
+                ),
+            }
+          );
+        }
+      })
+      .catch((err) => {
+        Toast.contractError(err.message);
+        console.log(err, err.message);
+      });
   };
 
-  const getMintConfig = async (collection) => {
-    const service = await contract;
-    let res;
-    const t = Date.now() * 1000000;
+  const getMintConfig = useCallback(
+    async (collection) => {
+      if (!contractService) return;
 
-    if (collection.contracts.whitelist) {
-      res = await service.getWhitelistConfig(collection.contracts.whitelist);
-    }
+      let res;
+      const t = Date.now() * 1000000;
 
-    // If there is no whitelist or the whitelist has ended
-    if (!collection.contracts.whitelist || t > res.end_time) {
-      res = { start_time: 0, end_time: 0 };
-    }
-    let res2 = await service.getMintConfig(collection.contracts.mint);
-    const num_minted_result = await service.getMintedCount(
-      collection.contracts.mint
-    );
+      if (collection.contracts.whitelist) {
+        res = await contractService.getWhitelistConfig(
+          collection.contracts.whitelist
+        );
+      }
 
-    const num_tokens = await service.getNumTokens(collection.contracts.base);
+      // If there is no whitelist or the whitelist has ended
+      if (!collection.contracts.whitelist || t > res.end_time) {
+        res = { start_time: 0, end_time: 0 };
+      }
+      let res2 = await contractService.getMintConfig(collection.contracts.mint);
+      const num_minted_result = await contractService.getMintedCount(
+        collection.contracts.mint
+      );
 
-    /*if (collection.id === "metahuahua") {
+      const num_tokens = await contractService.getNumTokens(
+        collection.contracts.base
+      );
+
+      /*if (collection.id === "metahuahua") {
       res2.max_num_tokens = 3333;
       res.totalCount = 3333;
     }*/
-    setConfig({
-      ...res,
-      unit_price: res2.unit_price,
-      max_num_tokens: res2.max_num_tokens,
-      num_minted: num_minted_result.num_minted || 0,
-      num_tokens: num_tokens?.count,
-    });
+      setConfig({
+        ...res,
+        unit_price: res2.unit_price,
+        max_num_tokens: res2.max_num_tokens,
+        num_minted: num_minted_result.num_minted || 0,
+        num_tokens: num_tokens?.count,
+      });
 
-    if (t < res.start_time) {
-      setStatus("Starting soon");
-    } else if (t > res.end_time) {
-      res = await service.getMintConfig(collection.contracts.mint);
-      setStatus("Public Sale");
-    } else {
-      setStatus("Whitelist Sale");
-    }
-  };
+      if (t < res.start_time) {
+        setStatus("Starting soon");
+      } else if (t > res.end_time) {
+        res = await contractService.getMintConfig(collection.contracts.mint);
+        setStatus("Public Sale");
+      } else {
+        setStatus("Whitelist Sale");
+      }
+    },
+    [contractService]
+  );
 
   useEffect(() => {
-    const collection = collectionForMintContract(mintContract);
+    if (!mintContract || !contractService) return;
 
-    setCollection(collection);
-    getMintConfig(collection);
-  }, [walletAddress, mintContract]);
+    const loadCollection = async () => {
+      const collection = collectionForMintContract(mintContract);
+      setCollection(collection);
+
+      if (collection) {
+        await getMintConfig(collection);
+      }
+    };
+
+    loadCollection();
+  }, [mintContract, contractService, getMintConfig]);
 
   const isButtonDisabled = () => {
     return (
