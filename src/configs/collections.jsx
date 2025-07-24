@@ -170,7 +170,7 @@ const collections = [
       mint: "pasg1zjd5lwhch4ndnmayqxurja4x5y5mavy9ktrk6fzsyzan4wcgawnqqqamhp",
       market: "pasg1fjvnr96n8kcl6d8qzr74klqjl9wakmqv5c9hzvqwr904kp34ye8q74qs5l",
     },
-    mintable: true,
+    mintable: false,
     mint: {
       creator: "Strange Clan",
       description: "Kira",
@@ -200,7 +200,7 @@ const collections = [
       market: "pasg1ehyucudueas79h0zwufcnxtv7s2sfmwc6rt0v0hzczdgvyr3p56qx2murn",
       mint: "pasg1axw5he6ktvz8rgacec3ldxmegy0urn0xevsysl7e0hx6dx90er6qt6dpja",
     },
-    mintable: true,
+    mintable: false,
     mint: {
       description: "Metahuahua",
       sale: Date.now(),
